@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: init_autoload.php
+  - source: init_autoloader.php
     destination: /var/www/
   - source: public
     destination: /var/www/public/
