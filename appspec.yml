@@ -1,13 +1,14 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.html
-    destination: /var/www/html/
+  - source: init_autoload.php
+    destination: /var/www/
+  - source: public
+    destination: /var/www/public/
+  - source: module
+    destination: /var/www/module/
 hooks:
-  BeforeInstall:
-    - location: scripts/install_dependencies
-      timeout: 300
-      runas: root
+  ApplicationStart:
     - location: scripts/start_server
       timeout: 300
       runas: root
