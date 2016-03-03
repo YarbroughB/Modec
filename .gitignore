@@ -1,0 +1,9 @@
+# Local configs
+config/autoload/*.local.php
+
+# Private Files
+data/
+temp/
+
+# Library Files
+library/
