@@ -1,37 +1,116 @@
+/**
+ * Navbar
+ **/
 body {
-    padding-top: 60px;
-    padding-bottom: 40px;
+	margin-top: 60px;
 }
 
-.zf-green {
-    color: #68b604;
+.navbar-brand {
+	font-size: 24px;
+	color: #ffffff !important;
 }
 
-.btn-success {
-  background-color: #57a900;
-  background-image: -moz-linear-gradient(top, #70d900, #57a900);
-  background-image: -ms-linear-gradient(top, #70d900, #57a900);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#70d900), to(#57a900));
-  background-image: -webkit-linear-gradient(top, #70d900, #57a900);
-  background-image: -o-linear-gradient(top, #70d900, #57a900);
-  background-image: linear-gradient(top, #70d900, #57a900);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70d900', endColorstr='#57a900', GradientType=0);
+a.navbar-brand:hover,
+a.navbar-brand:focus {
+	color: #999999 !important;
 }
 
-.btn-success:hover,
-.btn-success:active,
-.btn-success.active,
-.btn-success.disabled,
-.btn-success[disabled] {
-  background-color: #57a900;
+.navbar-user-icon {
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
 }
 
-.btn-success:active, .btn-success.active {
-  background-color: #57a900;
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    background-image: linear-gradient(to bottom, #222222 0px, #282828 100%);
+    background-repeat: repeat-x;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25) inset;
 }
 
-div.container a.brand {
-    background: url("../img/zf2-logo.png") no-repeat scroll 0 10px transparent;
-    margin-left: 0;
-    padding: 8px 20px 12px 40px;
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+}
+
+.navbar-inverse .dropdown-menu {
+	background-color: #222222;
+	border-color: #080808;
+}
+
+.navbar-inverse .dropdown-menu > li > a {
+	color: #999999;
+}
+
+.navbar-inverse .dropdown-menu > li > a:hover{
+	color: #ffffff;
+	background-color: #000000;
+	background-image: linear-gradient(to bottom, #222222 0px, #000000 100%);
+}
+
+.navbar-inverse .dropdown-menu > .divider {
+	background-color: #000000;
+}
+
+/**
+ * Footer
+ **/
+@media (min-width: 768px) {
+	html {
+		position: relative;
+		min-height: 100%;
+	}
+
+	body {
+		margin-bottom: 50px;
+	}
+
+	footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 40px;
+	}
+
+	.footer-nav {
+		float: right !important;
+	}
+}
+
+@media (max-width: 767px) {
+	footer {
+		text-align: center;
+	}
+
+	.copyright-text {
+		padding: 10px 0;
+	}
+}
+
+footer,
+footer a {
+	color: #666666;
+	font-size: 13px;
+}
+
+footer .container {
+	border-top: 1px solid #DDDDDD;
+	padding-top: 10px;
+}
+
+.footer-nav > li {
+	display: inline;
+}
+
+.footer-nav > li > a {
+	display: inline;
+	padding: 0px 10px;
+}
+
+.footer-nav > li > a:hover,
+.footer-nav > li > a:focus {
+	background-color: transparent;
+}
+
+form label, form label span {
+display: block;
 }

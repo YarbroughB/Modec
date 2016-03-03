@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application;
+//namespace Application;
 
 return array(
     'router' => array(
@@ -22,6 +22,16 @@ return array(
                     ),
                 ),
             ),
+			'logout' => array(
+				'type'    => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route'    => '/logout',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Login',
+						'action'     => 'logout',
+					),
+				),
+			),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -61,6 +71,10 @@ return array(
         ),
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+			'primary' => 'Application\Navigation\Service\PrimaryNavigationFactory',
+			'secondary' => 'Application\Navigation\Service\SecondaryNavigationFactory',
+			'footer' => 'Application\Navigation\Service\FooterNavigationFactory',
+			'user' => 'Application\Navigation\Service\UserNavigationFactory',
         ),
     ),
     'translator' => array(
@@ -75,7 +89,9 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => Controller\IndexController::class
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+			'Application\Controller\Login' => 'Application\Controller\LoginController',
+			'Application\Controller\Create' => 'Application\Controller\CreateController'
         ),
     ),
     'view_manager' => array(
@@ -101,4 +117,52 @@ return array(
             ),
         ),
     ),
+	'navigation' => array(
+		'primary' => array(
+			array(
+				'label' => 'Home',
+				'route' => 'home',
+                'pages' => array(
+                    array(
+                        'label' => 'Child #1',
+                        'uri' => '#',
+                    ),
+                    array(
+                        'label' => 'Child #2',
+                        'uri' => '#',
+                    ),
+                ),
+			),
+			array(
+				'label' => 'Left Nav Link',
+				'uri' => '#',
+			),
+		),
+		'secondary' => array(
+			array(
+				'label' => 'Right Nav Link',
+				'uri' => '#',
+			),
+		),
+		'footer' => array(
+			array(
+				'label' => 'Footer Link #1',
+				'uri' => '#',
+			),
+			array(
+				'label' => 'Footer Link #2',
+				'uri' => '#',
+			),
+			array(
+				'label' => 'Footer Link #3',
+				'uri' => '#',
+			),
+		),
+		'user' => array(
+			array(
+				'label' => 'Logout',
+				'route' => 'logout',
+			),
+		),
+	),
 );

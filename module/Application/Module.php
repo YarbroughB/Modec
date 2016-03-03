@@ -11,6 +11,12 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Authentication\Adapter\DbTable as DbAuthAdapter;
+use Zend\Authentication\AuthenticationService;
+use Zend\Session\Container;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
+use Application\Model\DataAccess;
 
 class Module
 {
@@ -19,6 +25,61 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+		
+		$serviceManager = $e->getApplication()->getServiceManager();
+		
+		/*$eventManager->attach(MvcEvent::EVENT_DISPATCH, array(
+            $this,
+            'beforeDispatch'
+        ), 100);*/
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH, array(
+            $this,
+            'afterDispatch'
+        ), -100);
+    }
+	
+	function beforeDispatch(MvcEvent $event){
+        $request = $event->getRequest();
+        $response = $event->getResponse();
+        $target = $event->getTarget ();
+        
+        /* Offline pages not needed authentication */  
+        $whiteList = array (
+			'Application\Controller\Login-index',
+			'Application\Controller\Login-create',
+			'Application\Controller\Create-index',
+			'Application\Controller\Create-login',
+		);
+		
+		$requestUri = $request->getRequestUri();
+        $controller = $event->getRouteMatch ()->getParam ( 'controller' );
+        $action = $event->getRouteMatch ()->getParam ( 'action' );
+        
+        $requestedResourse = $controller . "-" . $action;
+        
+        $session = new Container('User');
+        
+        if ($session->offsetExists ( 'username' )) {
+            if ($requestedResourse == 'Application\Controller\Login-index' || in_array ( $requestedResourse, $whiteList )) {
+                $url = '/application/index';
+                $response->setHeaders ( $response->getHeaders ()->addHeaderLine ( 'Location', $url ) );
+                $response->setStatusCode ( 302 );
+            }
+        }
+		else{
+            if ($requestedResourse != 'Application\Controller\Login-index' && ! in_array ( $requestedResourse, $whiteList )) {
+                 $url = '/application/login';                
+                $response->setHeaders ( $response->getHeaders ()->addHeaderLine ( 'Location', $url ) );
+                $response->setStatusCode ( 302 ); 
+            }
+            $response->sendHeaders ();
+        }
+        
+        //print "Called before any controller action called. Do any operation.";
+    }
+	
+	function afterDispatch(MvcEvent $event){
+        //print "Called after any controller action called. Do any operation.";
     }
 
     public function getConfig()
@@ -33,6 +94,29 @@ class Module
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
+            ),
+        );
+    }
+	
+	public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'AuthService' => function ($serviceManager) {
+                    $adapter = $serviceManager->get('Zend\Db\Adapter\Adapter');
+                    $dbAuthAdapter = new DbAuthAdapter ( $adapter, 'users', 'username', 'password' );
+                    	
+                    $auth = new AuthenticationService();
+                    $auth->setAdapter ( $dbAuthAdapter );
+                    return $auth;
+                },
+				'Application\Model\DataAccess' =>  function($sm) {
+					$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+					$resultSetPrototype = new ResultSet();
+                    $tableGateway = new TableGateway('users', $dbAdapter, null, $resultSetPrototype);//$sm->get('DataAccessGateway');
+                    $table = new DataAccess($tableGateway);
+                    return $table;
+                },
             ),
         );
     }

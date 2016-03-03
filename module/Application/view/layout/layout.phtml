@@ -1,55 +1,115 @@
 <?php echo $this->doctype(); ?>
-
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+	<head>
+		<meta charset="utf-8">
+		<?php
+			echo $this->headTitle('Modec')->setSeparator(' - ')->setAutoEscape(false);
 
-        <?php echo $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-        ?>
+			echo $this->headMeta()
+				->appendName('viewport', 'width=device-width, initial-scale=1.0')
+				->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
 
-        <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath('css/style.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+			echo $this->headLink(array(
+				'rel' => 'shortcut icon',
+				'type' => 'image/vnd.microsoft.icon',
+				'href' => $this->basePath() . '/img/favicon.ico'
+			));
+		?>
 
-        <!-- Scripts -->
-        <?php echo $this->headScript()
-            ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery.min.js'))
-            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
-        ; ?>
-
+		<!-- Stylesheets -->
+        <?php
+			echo $this->headLink()
+				->prependStylesheet($this->basePath('css/style.css'))
+				->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+				->prependStylesheet($this->basePath('css/bootstrap.min.css'));
+		?>
+		
+		<!-- Scripts -->		
+        <?php
+			echo $this->headScript()
+				->prependFile($this->basePath('js/general.js'))
+				->prependFile($this->basePath('js/bootstrap.min.js'))
+				->prependFile($this->basePath('js/jquery.min.js'))
+				->prependFile(
+					$this->basePath('js/respond.min.js'),
+					'text/javascript',
+					array('conditional' => 'lt IE 9')
+				)
+				->prependFile(
+					$this->basePath('js/html5shiv.min.js'),
+					'text/javascript',
+					array('conditional' => 'lt IE 9')
+				);
+		?>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Skeleton Application') ?></a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </nav>
-        <div class="container">
-            <?php echo $this->content; ?>
-            <hr>
-            <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
-            </footer>
-        </div> <!-- /container -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/">Modec</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<img class="navbar-user-icon" alt="" src="http://images.onlinelabels.com/images/clip-art/acspike/acspike_male_user_icon.png" />
+								Username
+								<!--<?php //$session = new Zend\Session\Container('User'); echo $session->offsetGet('username'); //use me when authentication has been completed?>-->
+							</a>
+							<?php 
+								echo $this->navigation('user')
+									->menu()
+									->setMaxDepth(0)
+									->setUlClass('dropdown-menu');
+							?>
+						</li>
+					</ul>
+                    <?php 
+						echo $this->navigation('primary')
+							->menu()
+							->setMaxDepth(0)
+							->setUlClass('nav navbar-nav');
+					?>
+                    <?php 
+						echo $this->navigation('secondary')
+							->menu()
+							->setMaxDepth(0)
+							->setUlClass('nav navbar-nav navbar-right');
+					?>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="alert alert-success hidden-xs hidden-sm hidden-md" role="alert">Your screen is larger than 1200px wide.</div>
+			<div class="alert alert-info hidden-xs hidden-sm hidden-lg" role="alert">Your screen is between 992px and 1200px wide.</div>
+			<div class="alert alert-warning hidden-xs hidden-md hidden-lg" role="alert">Your screen is between 768px and 992px wide.</div>
+			<div class="alert alert-danger hidden-sm hidden-md hidden-lg" role="alert">Your screen is less than 768px wide.</div>
+
+			<?php
+				echo $this->navigation('primary')
+					->breadcrumbs()
+					->setMinDepth(0)
+					->setPartial('partial/breadcrumb.phtml');
+				
+				echo $this->content;
+			?>
+        </div>
+		<footer>
+			<div class="container">
+				<?php 
+					echo $this->navigation('footer')
+						->menu()
+						->setMaxDepth(0)
+						->setUlClass('nav footer-nav');
+				?>
+				<div class="copyright-text">Copyright &copy; 2016 Team Modec</div>
+			</div>
+		</footer>
         <?php echo $this->inlineScript() ?>
     </body>
 </html>

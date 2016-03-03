@@ -1,0 +1,46 @@
+<?php 
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        &times;
+    </button>
+    <ul><li>')
+    ->setMessageSeparatorString('</li><li>')
+    ->setMessageCloseString('</li></ul></div>');
+
+echo $flash->render('error',   array('alert', 'alert-dismissible', 'alert-danger'));
+echo $flash->render('info',    array('alert', 'alert-dismissible', 'alert-info'));
+echo $flash->render('default', array('alert', 'alert-dismissible', 'alert-warning'));
+echo $flash->render('success', array('alert', 'alert-dismissible', 'alert-success'));
+?>
+<div class="row">
+    <div class="col-md-6">
+		<h1>Login</h1>
+		<?php 
+			$form = $this->loginForm;
+			$form->prepare();
+			echo $this->form()->openTag($form);
+			echo $this->formlabel($form->get('username'));
+			echo $this->formElement($form->get('username')); 
+		?>
+		<span class="common-error-msg"><?php echo $this->formElementErrors($form->get('username'));?></span>
+		<?php 
+			echo $this->formlabel($form->get('password'));
+			echo $this->formElement($form->get('password')); 
+		?>
+		<span class="common-error-msg"><?php echo $this->formElementErrors($form->get('password'));?></span>
+		<p/>
+		<div> 
+			<?php 
+				echo $this->formElement($form->get('submit'));
+				echo ' ';
+				echo $this->formElement($form->get('newUser'));
+				echo $this->formRow($form->get('loginCsrf'));
+				echo $this->form()->closeTag($form);
+			?> 
+		</div>
+	</div>
+</div>
+<?php
+
+?>
