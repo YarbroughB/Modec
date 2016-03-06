@@ -36,6 +36,52 @@ class RegistrationFilter extends InputFilter
 		));
 
 		$this->add(array(
+			'name'     => 'email',
+			'required' => true,
+			'filters'  => array(
+				array('name' => 'StripTags'),
+				array('name' => 'StringTrim'),
+			),
+			'validators' => array(
+				array(
+					'name'    => 'StringLength',
+					'options' => array(
+						'encoding' => 'UTF-8',
+						'max'	  => 150,
+					),
+				),
+				array(
+					'name'    => 'EmailAddress',
+				),
+				array(
+					'name'    => 'Zend\Validator\Db\NoRecordExists',
+					'options' => array(
+						'table'   => 'users',
+						'field'   => 'email',
+						'adapter' => $sm->get('Zend\Db\Adapter\Adapter'),
+					),
+				),
+			),
+		));
+
+		$this->add(array(
+			'name'     => 'email_confirm',
+			'required' => true,
+			'filters'  => array(
+				array('name' => 'StripTags'),
+				array('name' => 'StringTrim'),
+			),
+			'validators' => array(
+				array(
+					'name'    => 'Identical',
+					'options' => array(
+						'token' => 'email',
+					),
+				),
+			),
+		));
+
+		$this->add(array(
 			'name'     => 'password',
 			'required' => true,
 			'filters'  => array(

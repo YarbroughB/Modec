@@ -21,6 +21,26 @@ class RegistrationForm extends Form
 				'label' => 'Username',
 			),
 		));
+
+		$this->add(array(
+			'name' => 'email',
+			'attributes' => array(
+				'type' => 'text',
+			),
+			'options' => array(
+				'label' => 'Email',
+			),
+		));
+
+		$this->add(array(
+			'name' => 'email_confirm',
+			'attributes' => array(
+				'type' => 'text',
+			),
+			'options' => array(
+				'label' => 'Confirm Email',
+			),
+		));
 		
 		$this->add(array(
 			'name' => 'password',

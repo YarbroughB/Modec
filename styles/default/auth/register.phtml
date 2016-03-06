@@ -5,8 +5,13 @@
 
 	echo $this->form()->openTag($this->form);
 		echo $this->formRow($this->form->get('username'));
+
+		echo $this->formRow($this->form->get('email'));
+		echo $this->formRow($this->form->get('email_confirm'));
+
 		echo $this->formRow($this->form->get('password'));
 		echo $this->formRow($this->form->get('password_confirm'));
+
 		echo $this->formRow($this->form->get('captcha'));
 
 		echo $this->formSubmit($this->form->get('submit'));
