@@ -1,15 +1,17 @@
 version: 0.0
 os: linux
 files:
-  - source: init_autoloader.php
-    destination: /var/www/
+  - source: config
+    destination: /var/www/config/
+  - source: module
+    destination: /var/www/module/
   - source: public
     destination: /var/www/public/
   - source: styles
     destination: /var/www/styles/
-  - source: module
-    destination: /var/www/module/
-hooks:
+  - source: init_autoloader.php
+    destination: /var/www/
+ hooks:
   ApplicationStart:
     - location: scripts/start_server
       timeout: 300
