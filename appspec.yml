@@ -11,7 +11,7 @@ files:
     destination: /var/www/styles/
   - source: init_autoloader.php
     destination: /var/www/
- hooks:
+hooks:
   ApplicationStart:
     - location: scripts/start_server
       timeout: 300
