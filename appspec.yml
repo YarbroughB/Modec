@@ -5,6 +5,8 @@ files:
     destination: /var/www/
   - source: public
     destination: /var/www/public/
+  - source: styles
+    destination: /var/www/styles/
   - source: module
     destination: /var/www/module/
 hooks:

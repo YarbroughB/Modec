@@ -1,0 +1,14 @@
+<h1>Registration</h1>
+<?php
+	$this->form->setAttribute('action', $this->url('register', array('controller' => 'auth', 'action' => 'register')));
+	$this->form->prepare();
+
+	echo $this->form()->openTag($this->form);
+		echo $this->formRow($this->form->get('username'));
+		echo $this->formRow($this->form->get('password'));
+		echo $this->formRow($this->form->get('password_confirm'));
+		echo $this->formRow($this->form->get('captcha'));
+
+		echo $this->formSubmit($this->form->get('submit'));
+	echo $this->form()->closeTag();
+?>

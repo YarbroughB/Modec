@@ -1,0 +1,16 @@
+<h1>Login </h1>
+<?php
+	$this->form->setAttribute('action', $this->url('login', array('controller' => 'auth', 'action' => 'login')));
+	$this->form->prepare();
+
+	echo $this->form()->openTag($this->form);
+		echo $this->formRow($this->form->get('username'));
+		echo $this->formRow($this->form->get('password'));
+		echo $this->formRow($this->form->get('rememberme'));
+		
+		echo $this->formSubmit($this->form->get('submit'));
+	echo $this->form()->closeTag();
+?>
+<p>
+	<a href="<?php echo $this->url('register', array('controller' => 'auth', 'action' => 'register'));?>"><?php echo $this->translate('Register New Account'); ?></a>
+</p>
