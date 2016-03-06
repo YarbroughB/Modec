@@ -2,7 +2,8 @@
 
 return array(
 	'modules' => array(
-		'Core'
+		'Core',
+		'Cms'
 	),
 	'module_listener_options' => array(
 		'module_paths' => array(

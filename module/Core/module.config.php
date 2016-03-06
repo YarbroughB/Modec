@@ -1,7 +1,5 @@
 <?php
 
-namespace Core;
-
 return array(
 	'router' => array(
 		'routes' => array(
