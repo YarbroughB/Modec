@@ -5,7 +5,7 @@ use Zend\InputFilter\InputFilter;
 
 class LoginFilter extends InputFilter
 {
-	public function __construct($sm)
+	public function __construct($serviceLocator)
 	{
 		  $this->add(array(
 				'name'     => 'username',

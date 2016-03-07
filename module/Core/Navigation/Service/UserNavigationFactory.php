@@ -2,7 +2,7 @@
 
 namespace Core\Navigation\Service;
 
-use  Zend\Navigation\Service\AbstractNavigationFactory;
+use Zend\Navigation\Service\AbstractNavigationFactory;
 
 class UserNavigationFactory extends AbstractNavigationFactory
 {

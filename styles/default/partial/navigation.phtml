@@ -26,7 +26,8 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<?php foreach ($page->getPages() as $child): ?>
+					<?php $subpages = new \Zend\Navigation\Navigation($page->getPages()); ?>
+					<?php foreach ($subpages as $child): ?>
 						<li class="<?php echo ($child->isActive() ? 'active' : '') ?>">
 							<a href="<?php echo $child->getHref() ?>" target="<?php echo $child->getTarget() ?>">
 								<?php echo $child->getLabel() ?>

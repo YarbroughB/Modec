@@ -6,7 +6,7 @@ use Zend\InputFilter\InputFilter;
 
 class RegistrationFilter extends InputFilter
 {
-	public function __construct($sm)
+	public function __construct($serviceLocator)
 	{
 		$this->add(array(
 			'name'     => 'username',
@@ -29,7 +29,7 @@ class RegistrationFilter extends InputFilter
 					'options' => array(
 						'table'   => 'users',
 						'field'   => 'username',
-						'adapter' => $sm->get('Zend\Db\Adapter\Adapter'),
+						'adapter' => $serviceLocator->get('Zend\Db\Adapter\Adapter'),
 					),
 				),
 			),
@@ -58,7 +58,7 @@ class RegistrationFilter extends InputFilter
 					'options' => array(
 						'table'   => 'users',
 						'field'   => 'email',
-						'adapter' => $sm->get('Zend\Db\Adapter\Adapter'),
+						'adapter' => $serviceLocator->get('Zend\Db\Adapter\Adapter'),
 					),
 				),
 			),

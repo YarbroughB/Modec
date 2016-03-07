@@ -45,17 +45,7 @@ class AuthController extends AbstractActionController
 				$user = new User();
 				$user->exchangeArray($data);
 
-				$sm = $this->getServiceLocator();
-				$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-
-				$resultSetPrototype = new \Zend\Db\ResultSet\ResultSet();
-				$resultSetPrototype->setArrayObjectPrototype(new User());
-
-				$tableGateway = new \Zend\Db\TableGateway\TableGateway(
-					'users', $dbAdapter, null, $resultSetPrototype
-				);
-
-				$usersTable = new UsersTable($tableGateway);
+				$usersTable = $this->getServiceLocator()->get('Core\Model\UsersTable');
 				$usersTable->saveUser($user);
 			
 				$this->flashMessenger()->addSuccessMessage("Registered");
@@ -94,8 +84,8 @@ class AuthController extends AbstractActionController
 			if ($form->isValid()) {
 				$data = $form->getData();
 
-				$sm = $this->getServiceLocator();
-				$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+				$serviceLocator = $this->getServiceLocator();
+				$dbAdapter = $serviceLocator->get('Zend\Db\Adapter\Adapter');
 				
 				$authAdapter = new \Zend\Authentication\Adapter\DbTable(
 					$dbAdapter, 'users', 'username', 'password', "MD5(CONCAT(?, password_salt))"

@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	//! @todo Move the routes to the db?
 	'router' => array(
 		'routes' => array(
 			'home' => array(
@@ -58,7 +59,7 @@ return array(
 		'not_found_template'       => 'error/404',
 		'exception_template'       => 'error/exception',
 		'template_map' => array(
-			'layout/layout'           => __DIR__ . '/../../styles/default/wrapper.phtml'
+			'layout/layout'           => __DIR__ . '/../../styles/default/wrapper.phtml',
 		),
 		'template_path_stack' => array(
 			__DIR__ . '/../../styles/default',
@@ -78,23 +79,28 @@ return array(
 			'AuthService' => 'Zend\Authentication\AuthenticationService',
 		),
     ),
+	//! @todo Move the navigation to the db
 	'navigation' => array(
 		'primary' => array(
 			array(
 				'label' => 'Home',
 				'route' => 'home',
+				'order' => 100,
 			),
 			array(
 				'label' => 'Auth Links',
 				'uri' => '#',
+				'order' => 900,
                 'pages' => array(
 					array(
 						'label' => 'Register',
 						'route' => 'register',
+						'order' => 100,
 					),
 					array(
 						'label' => 'Login',
 						'route' => 'login',
+						'order' => 50,
 					),
                 ),
 			),
@@ -105,6 +111,7 @@ return array(
 			array(
 				'label' => 'Logout',
 				'route' => 'logout',
+				'order' => 100,
 			),
 		),
 	),

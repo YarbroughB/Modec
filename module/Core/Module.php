@@ -2,8 +2,8 @@
 
 namespace Core;
 
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
+//use Zend\Mvc\ModuleRouteListener;
+//use Zend\Mvc\MvcEvent;
 
 class Module
 {
@@ -15,7 +15,7 @@ class Module
 	}*/
 
 	public function getConfig()
-	{
+	{	
 		return include __DIR__ . '/module.config.php';
 	}
 
@@ -26,6 +26,15 @@ class Module
 				'namespaces' => array(
 					__NAMESPACE__ => __DIR__,
 				),
+			),
+		);
+	}
+
+	public function getServiceConfig()
+	{
+		return array(
+			'factories' => array(
+				'Core\Model\UsersTable' =>  'Core\Model\UsersTableFactory',
 			),
 		);
 	}
