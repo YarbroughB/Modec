@@ -13,18 +13,20 @@ use Core\Model\UsersTable;
 class UsersTableFactory implements FactoryInterface
 {
 	public function createService(ServiceLocatorInterface $serviceLocator)
-	{	
+	{
+		// Get the db adapter
 		$dbAdapter = $serviceLocator->get('Zend\Db\Adapter\Adapter');
 
+		// Setup the result prototype
 		$resultSetPrototype = new ResultSet();
 		$resultSetPrototype->setArrayObjectPrototype(new User());
 
+		// Create the table gateway
 		$tableGateway = new TableGateway(
 			'users', $dbAdapter, null, $resultSetPrototype
 		);
 
-		$table = new UsersTable($tableGateway);
-		
-		return $table;
+		// Return the table
+		return new UsersTable($tableGateway);
 	}
 }

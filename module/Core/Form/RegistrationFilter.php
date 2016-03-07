@@ -8,6 +8,7 @@ class RegistrationFilter extends InputFilter
 {
 	public function __construct($serviceLocator)
 	{
+		// Filter the username
 		$this->add(array(
 			'name'     => 'username',
 			'required' => true,
@@ -35,6 +36,7 @@ class RegistrationFilter extends InputFilter
 			),
 		));
 
+		// Filter the email
 		$this->add(array(
 			'name'     => 'email',
 			'required' => true,
@@ -64,6 +66,7 @@ class RegistrationFilter extends InputFilter
 			),
 		));
 
+		// Filter the email confirmation
 		$this->add(array(
 			'name'     => 'email_confirm',
 			'required' => true,
@@ -81,6 +84,7 @@ class RegistrationFilter extends InputFilter
 			),
 		));
 
+		// Filter the password
 		$this->add(array(
 			'name'     => 'password',
 			'required' => true,
@@ -99,6 +103,7 @@ class RegistrationFilter extends InputFilter
 			),
 		));	
 
+		// Filter the password confirmation
 		$this->add(array(
 			'name'     => 'password_confirm',
 			'required' => true,

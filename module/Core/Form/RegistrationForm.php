@@ -10,8 +10,10 @@ class RegistrationForm extends Form
 	{
 		parent::__construct('registration');
 
+		// Set the form method
 		$this->setAttribute('method', 'post');
 
+		// Add the username field
 		$this->add(array(
 			'name' => 'username',
 			'attributes' => array(
@@ -21,7 +23,8 @@ class RegistrationForm extends Form
 				'label' => 'Username',
 			),
 		));
-
+		
+		// Add the email field
 		$this->add(array(
 			'name' => 'email',
 			'attributes' => array(
@@ -32,6 +35,7 @@ class RegistrationForm extends Form
 			),
 		));
 
+		// Add the email confirmation field
 		$this->add(array(
 			'name' => 'email_confirm',
 			'attributes' => array(
@@ -42,6 +46,7 @@ class RegistrationForm extends Form
 			),
 		));
 		
+		// Add the password field
 		$this->add(array(
 			'name' => 'password',
 			'attributes' => array(
@@ -52,6 +57,7 @@ class RegistrationForm extends Form
 			),
 		));
 		
+		// Add the password confirmation field
 		$this->add(array(
 			'name' => 'password_confirm',
 			'attributes' => array(
@@ -62,6 +68,7 @@ class RegistrationForm extends Form
 			),
 		));	
 
+		// Add the human verification
 		$this->add(array(
 			'type' => 'Zend\Form\Element\Captcha',
 			'name' => 'captcha',
@@ -71,6 +78,7 @@ class RegistrationForm extends Form
 			),
 		));
 		
+		// Add the submit button
 		$this->add(array(
 			'name' => 'submit',
 			'attributes' => array(

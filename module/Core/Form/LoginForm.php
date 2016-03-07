@@ -9,8 +9,10 @@ class LoginForm extends Form
 	{
 		parent::__construct('login');
 
+		// Set the form method
 		$this->setAttribute('method', 'post');
 
+		// Add the username field
 		$this->add(array(
 			'name' => 'username',
 			'attributes' => array(
@@ -21,6 +23,7 @@ class LoginForm extends Form
 			),
 		));
 
+		// Add the password field
 		$this->add(array(
 			'name' => 'password',
 			'attributes' => array(
@@ -31,6 +34,7 @@ class LoginForm extends Form
 			),
 		));
 
+		// Add the remember me checkbox
 		$this->add(array(
 			'name' => 'rememberme',
 			'type' => 'checkbox',
@@ -39,6 +43,7 @@ class LoginForm extends Form
 			),
 		));
 
+		// Add the submit button
 		$this->add(array(
 			'name' => 'submit',
 			'attributes' => array(
