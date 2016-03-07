@@ -4,11 +4,11 @@ return array(
 	'router' => array(
 		'routes' => array(
 			'home' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'type'    => 'Literal',
 				'options' => array(
 					'route'	=> '/',
 					'defaults' => array(
-						'controller' => 'Core\Controller\Index',
+						'controller' => 'Core\Index',
 						'action'     => 'index',
 					),
 				),
@@ -18,7 +18,7 @@ return array(
 				'options' => array(
 					'route'    => '/register',
 					'defaults' => array(
-						'controller'    => 'Core\Controller\Auth',
+						'controller'    => 'Core\Auth',
 						'action'        => 'register',
 					),
 				),
@@ -28,7 +28,7 @@ return array(
 				'options' => array(
 					'route'    => '/login',
 					'defaults' => array(
-						'controller'    => 'Core\Controller\Auth',
+						'controller'    => 'Core\Auth',
 						'action'        => 'login',
 					),
 				),
@@ -38,7 +38,7 @@ return array(
 				'options' => array(
 					'route'    => '/logout',
 					'defaults' => array(
-						'controller'    => 'Core\Controller\Auth',
+						'controller'    => 'Core\Auth',
 						'action'        => 'logout',
 					),
 				),
@@ -47,8 +47,8 @@ return array(
 	),
 	'controllers' => array(
 		'invokables' => array(
-			'Core\Controller\Index' => 'Core\Controller\IndexController',
-            'Core\Controller\Auth'  => 'Core\Controller\AuthController',	
+			'Core\Index' => 'Core\Controller\IndexController',
+            'Core\Auth'  => 'Core\Controller\AuthController',	
 		),
 	),
 	'view_manager' => array(

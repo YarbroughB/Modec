@@ -6,11 +6,11 @@ return array(
 			/* Overwrite the home so the index will now be the
 			   cms instead of the default splash */
 			'home' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'type' => 'Literal',
 				'options' => array(
 					'route'	=> '/',
 					'defaults' => array(
-						'controller' => 'Cms\Controller\Index',
+						'controller' => 'Cms\Index',
 						'action'     => 'index',
 					),
 				),
@@ -19,7 +19,7 @@ return array(
 	),
 	'controllers' => array(
 		'invokables' => array(
-			'Cms\Controller\Index' => 'Cms\Controller\IndexController'
+			'Cms\Index' => 'Cms\Controller\IndexController'
 		),
 	),
 );
