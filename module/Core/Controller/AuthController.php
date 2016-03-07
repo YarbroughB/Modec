@@ -117,10 +117,10 @@ class AuthController extends AbstractActionController
 						break;
 					case Result::SUCCESS:
 						$storage = $auth->getStorage();
-						$storage->write($authAdapter->getResultRowObject(
+						$storage->write(new User($authAdapter->getResultRowObject(
 							null,
-							'password'
-						));
+							array('password', 'password_salt')
+						)));
 
 						if ($data['rememberme']) {
 							$sessionManager = new \Zend\Session\SessionManager();

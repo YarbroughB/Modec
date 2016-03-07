@@ -1,6 +1,6 @@
 <h1>Registration</h1>
 <?php
-	$this->form->setAttribute('action', $this->url('register', array('controller' => 'auth', 'action' => 'register')));
+	$this->form->setAttribute('action', $this->url('register'));
 	$this->form->prepare();
 
 	echo $this->form()->openTag($this->form);

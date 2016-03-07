@@ -55,30 +55,39 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<img class="navbar-user-icon" alt="" src="http://images.onlinelabels.com/images/clip-art/acspike/acspike_male_user_icon.png" />
-								Username
-								<!--<?php //$session = new Zend\Session\Container('User'); echo $session->offsetGet('username'); //use me when authentication has been completed?>-->
-							</a>
-							<?php 
-								echo $this->navigation('user')
-									->menu()
-									->setMaxDepth(0)
-									->setUlClass('dropdown-menu');
-							?>
-						</li>
+						<?php if ($user = $this->identity()): ?>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+									<img class="navbar-user-icon" alt="" src="http://images.onlinelabels.com/images/clip-art/acspike/acspike_male_user_icon.png" />
+									<?php echo $user->username ?>
+								</a>
+								<?php 
+									echo $this->navigation('user')
+										->menu()
+										->setMaxDepth(0)
+										->setUlClass('dropdown-menu');
+								?>
+							</li>
+						<?php else: ?>
+							<li>
+								<a href="<?php echo $this->url('login') ?>">
+									<?php echo $this->translate('Login') ?>
+								</a>
+							</li>
+						<?php endif; ?>
 					</ul>
                     <?php 
 						echo $this->navigation('primary')
 							->menu()
 							->setMaxDepth(0)
+							->setPartial('partial/navigation.phtml')
 							->setUlClass('nav navbar-nav');
 					?>
                     <?php 
 						echo $this->navigation('secondary')
 							->menu()
 							->setMaxDepth(0)
+							->setPartial('partial/navigation.phtml')
 							->setUlClass('nav navbar-nav navbar-right');
 					?>
 				</div>

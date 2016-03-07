@@ -41,7 +41,9 @@ a.navbar-brand:focus {
 	color: #999999;
 }
 
-.navbar-inverse .dropdown-menu > li > a:hover{
+.navbar-inverse .dropdown-menu > li > a:hover, 
+.navbar-inverse .dropdown-menu > li > a:focus, 
+.navbar-inverse .dropdown-menu > li.active > a {
 	color: #ffffff;
 	background-color: #000000;
 	background-image: linear-gradient(to bottom, #222222 0px, #000000 100%);

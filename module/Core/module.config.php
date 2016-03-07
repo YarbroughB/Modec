@@ -71,6 +71,12 @@ return array(
 			'footer' => 'Core\Navigation\Service\FooterNavigationFactory',
 			'user' => 'Core\Navigation\Service\UserNavigationFactory',
         ),
+		'aliases' => array(
+			'Zend\Authentication\AuthenticationService' => 'AuthService',
+		),
+		'invokables' => array(
+			'AuthService' => 'Zend\Authentication\AuthenticationService',
+		),
     ),
 	'navigation' => array(
 		'primary' => array(
@@ -79,12 +85,18 @@ return array(
 				'route' => 'home',
 			),
 			array(
-				'label' => 'Register',
-				'route' => 'register',
-			),
-			array(
-				'label' => 'Login',
-				'route' => 'login',
+				'label' => 'Auth Links',
+				'uri' => '#',
+                'pages' => array(
+					array(
+						'label' => 'Register',
+						'route' => 'register',
+					),
+					array(
+						'label' => 'Login',
+						'route' => 'login',
+					),
+                ),
 			),
 		),
 		'secondary' => array(),

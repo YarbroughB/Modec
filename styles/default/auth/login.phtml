@@ -1,6 +1,6 @@
 <h1>Login </h1>
 <?php
-	$this->form->setAttribute('action', $this->url('login', array('controller' => 'auth', 'action' => 'login')));
+	$this->form->setAttribute('action', $this->url('login'));
 	$this->form->prepare();
 
 	echo $this->form()->openTag($this->form);
@@ -12,5 +12,5 @@
 	echo $this->form()->closeTag();
 ?>
 <p>
-	<a href="<?php echo $this->url('register', array('controller' => 'auth', 'action' => 'register'));?>"><?php echo $this->translate('Register New Account'); ?></a>
+	<a href="<?php echo $this->url('register') ?>"><?php echo $this->translate('Register New Account') ?></a>
 </p>
