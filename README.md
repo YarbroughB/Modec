@@ -25,7 +25,7 @@ highlight a random gallery).
 
  * Core
 	* User Accounts
-		* User Registration
+		* ~~User Registration~~
 			* ~~Human Verification~~
 			* Email Validation
 		* ~~User Authentication~~
@@ -34,7 +34,7 @@ highlight a random gallery).
 			* Edit Users
 			* Moderate / Ban Users	* Access Control List		* Usergroup Based
 		* Admin CP
-			* Edit Permissions for Resources	* Database Driven Navigation
+			* Edit Permissions for Resources	* ~~Database Driven Navigation~~
 		* Admin CP
 			* Add Navigation Links
 			* Edit Navigation Links

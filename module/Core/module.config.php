@@ -79,40 +79,4 @@ return array(
 			'AuthService' => 'Zend\Authentication\AuthenticationService',
 		),
     ),
-	//! @todo Move the navigation to the db
-	'navigation' => array(
-		'primary' => array(
-			array(
-				'label' => 'Home',
-				'route' => 'home',
-				'order' => 100,
-			),
-			array(
-				'label' => 'Auth Links',
-				'uri' => '#',
-				'order' => 900,
-                'pages' => array(
-					array(
-						'label' => 'Register',
-						'route' => 'register',
-						'order' => 100,
-					),
-					array(
-						'label' => 'Login',
-						'route' => 'login',
-						'order' => 50,
-					),
-                ),
-			),
-		),
-		'secondary' => array(),
-		'footer' => array(),
-		'user' => array(
-			array(
-				'label' => 'Logout',
-				'route' => 'logout',
-				'order' => 100,
-			),
-		),
-	),
 );

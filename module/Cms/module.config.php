@@ -22,18 +22,4 @@ return array(
 			'Cms\Index' => 'Cms\Controller\IndexController'
 		),
 	),
-	'navigation' => array(
-		'primary' => array(
-			array(
-				'label' => 'Post Test',
-				'uri' => '#',
-				'order' => 200,
-			),
-			array(
-				'label' => 'Pre Test',
-				'uri' => '#',
-				'order' => 50,
-			),
-		),
-	),
 );
