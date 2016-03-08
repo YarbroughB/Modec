@@ -28,7 +28,7 @@ class User
 		$this->email         = (!empty($data['email']))         ? $data['email']         : null;
 		$this->password      = (!empty($data['password']))      ? $data['password']      : null;
 		$this->password_salt = (!empty($data['password_salt'])) ? $data['password_salt'] : null;
-	}	
+	}
 
 	public function getArrayCopy()
 	{

@@ -3,9 +3,6 @@
 // Make all paths be realitve to the application root.
 chdir(dirname(__DIR__));
 
-// Set the Zend Framework Path in the PHP environment.
-putenv('ZF2_PATH=./library/');
-
 // Configure the PHP environment to show errors for development purposes.
 ini_set('display_errors', 1);  
 error_reporting(E_ALL & ~E_NOTICE);

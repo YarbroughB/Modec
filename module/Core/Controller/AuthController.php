@@ -106,7 +106,7 @@ class AuthController extends AbstractActionController
 
 				// Fetch the db adapter
 				$serviceLocator = $this->getServiceLocator();
-				$dbAdapter = $serviceLocator->get('Zend\Db\Adapter\Adapter');
+				$dbAdapter = $serviceLocator->get('DbAdapter');
 				
 				// Create the authentication adapter
 				$authAdapter = new \Zend\Authentication\Adapter\DbTable(

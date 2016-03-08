@@ -15,7 +15,7 @@ class UsersTableFactory implements FactoryInterface
 	public function createService(ServiceLocatorInterface $serviceLocator)
 	{
 		// Get the db adapter
-		$dbAdapter = $serviceLocator->get('Zend\Db\Adapter\Adapter');
+		$dbAdapter = $serviceLocator->get('DbAdapter');
 
 		// Setup the result prototype
 		$resultSetPrototype = new ResultSet();

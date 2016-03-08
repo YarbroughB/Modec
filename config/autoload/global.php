@@ -16,8 +16,11 @@ return array(
 		'driver' => 'Pdo_Mysql',
 	),
 	'service_manager' => array(
+		'aliases' => array(
+			'Zend\Db\Adapter\Adapter' => 'DbAdapter',
+		),
 		'factories' => array(
-			'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+			'DbAdapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
 		),
 	),
 );
