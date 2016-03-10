@@ -1,6 +1,6 @@
 <?php
 
-// Make all paths be realitve to the application root.
+// Make all paths be relative to the application root.
 chdir(dirname(__DIR__));
 
 // Configure the PHP environment to show errors for development purposes.

@@ -1,6 +1,13 @@
 /**
+ * General Layout
+ */
+body {
+	background-color: #eeeeee;
+}
+ 
+/**
  * Navbar
- **/
+ */
 body {
 	margin-top: 60px;
 }
@@ -55,7 +62,7 @@ a.navbar-brand:focus {
 
 /**
  * Footer
- **/
+ */
 @media (min-width: 768px) {
 	html {
 		position: relative;
@@ -113,6 +120,13 @@ footer .container {
 	background-color: transparent;
 }
 
-form label, form label span {
-display: block;
+/**
+ * Forms
+ */
+.form-horizontal .help-block {
+	margin-bottom: 0px;
+}
+
+form pre {
+	overflow-x: auto;
 }

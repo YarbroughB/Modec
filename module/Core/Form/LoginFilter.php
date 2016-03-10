@@ -15,16 +15,6 @@ class LoginFilter extends InputFilter
 				array('name' => 'StripTags'),
 				array('name' => 'StringTrim'),
 			),
-			'validators' => array(
-				array(
-					'name'    => 'StringLength',
-					'options' => array(
-						'encoding' => 'UTF-8',
-						'min'	  => 1,
-						'max'	  => 50,
-					),
-				),
-			),
 		));
 
 		// Filter the password
@@ -34,15 +24,6 @@ class LoginFilter extends InputFilter
 			'filters'  => array(
 				array('name' => 'StripTags'),
 				array('name' => 'StringTrim'),
-			),
-			'validators' => array(
-				array(
-					'name'    => 'StringLength',
-					'options' => array(
-						'encoding' => 'UTF-8',
-						'min'      => 1,
-					),
-				),
 			),
 		));
 	}

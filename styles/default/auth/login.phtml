@@ -1,16 +1,41 @@
-<h1>Login </h1>
 <?php
-	$this->form->setAttribute('action', $this->url('login'));
-	$this->form->prepare();
+	// Add the page css
+	$this->headLink()->prependStylesheet($this->basePath('css/login.css'));
 
-	echo $this->form()->openTag($this->form);
-		echo $this->formRow($this->form->get('username'));
-		echo $this->formRow($this->form->get('password'));
-		echo $this->formRow($this->form->get('rememberme'));
-		
-		echo $this->formSubmit($this->form->get('submit'));
-	echo $this->form()->closeTag();
+	// Customize the form
+	$this->formElementErrors()->setMessageOpenFormat('<span class="help-block">');
+	$this->formElementErrors()->setMessageSeparatorString('</span><span class="help-block">');
+	$this->formElementErrors()->setMessageCloseString('</span>');
+
+	$this->form->get('username')->setAttribute('class', 'form-control');
+    $this->form->get('username')->setLabelAttributes(array(
+		'class' => 'col-sm-2 control-label'
+	));
+
+	$this->form->get('password')->setAttribute('class', 'form-control');
+    $this->form->get('password')->setLabelAttributes(array(
+		'class' => 'col-sm-2 control-label'
+	));
+
+	$this->form->get('submit')->setAttribute('class', 'btn btn-lg btn-primary btn-block');
 ?>
-<p>
-	<a href="<?php echo $this->url('register') ?>"><?php echo $this->translate('Register New Account') ?></a>
-</p>
+
+<?php echo $this->form()->openTag($this->form); ?>
+	<h1>Login</h1>
+
+	<?php echo $this->formElement($this->form->get('username')); ?>
+	<?php echo $this->formElement($this->form->get('password')); ?>
+	
+	<?php if ($error): ?>
+		<span class="help-block"><?php echo $error; ?></span>
+	<?php endif; ?>
+
+	<div class="checkbox">
+		<?php echo $this->formRow($this->form->get('rememberme'), 'append'); ?>
+	</div>
+
+	<?php echo $this->formRow($this->form->get('referer')); ?>
+	<?php echo $this->formSubmit($this->form->get('submit')); ?>
+	
+	<a href="<?php echo $this->url('register'); ?>"><?php echo $this->translate('Register New Account'); ?></a>
+<?php echo $this->form()->closeTag(); ?>

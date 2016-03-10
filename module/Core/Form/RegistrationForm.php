@@ -28,18 +28,19 @@ class RegistrationForm extends Form
 		$this->add(array(
 			'name' => 'email',
 			'attributes' => array(
-				'type' => 'text',
+				'type' => 'email',
 			),
 			'options' => array(
 				'label' => 'Email',
 			),
+			'group' => 'email',
 		));
 
 		// Add the email confirmation field
 		$this->add(array(
 			'name' => 'email_confirm',
 			'attributes' => array(
-				'type' => 'text',
+				'type' => 'email',
 			),
 			'options' => array(
 				'label' => 'Confirm Email',
@@ -73,7 +74,7 @@ class RegistrationForm extends Form
 			'type' => 'Zend\Form\Element\Captcha',
 			'name' => 'captcha',
 			'options' => array(
-				'label' => 'Please verify you are human',
+				'label' => 'Human Verification',
 				'captcha' => new \Zend\Captcha\Figlet(),
 			),
 		));

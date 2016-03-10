@@ -9,22 +9,22 @@
 				->appendName('viewport', 'width=device-width, initial-scale=1.0')
 				->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
 
-			echo $this->headLink(array(
+			$this->headLink(array(
 				'rel' => 'shortcut icon',
 				'type' => 'image/vnd.microsoft.icon',
 				'href' => $this->basePath() . '/img/favicon.ico'
 			));
 		?>
 
-		<!-- Stylesheets -->
+		<!-- Style -->
         <?php
 			echo $this->headLink()
-				->prependStylesheet($this->basePath('css/style.css'))
+				->prependStylesheet($this->basePath('css/general.css'))
 				->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
 				->prependStylesheet($this->basePath('css/bootstrap.min.css'));
 		?>
 		
-		<!-- Scripts -->		
+		<!-- Script -->		
         <?php
 			echo $this->headScript()
 				->prependFile($this->basePath('js/general.js'))
@@ -82,8 +82,7 @@
 							->setMaxDepth(0)
 							->setPartial('partial/navigation.phtml')
 							->setUlClass('nav navbar-nav');
-					?>
-                    <?php 
+
 						echo $this->navigation('secondary')
 							->menu()
 							->setMaxDepth(0)

@@ -26,9 +26,13 @@ class AuthController extends AbstractActionController
 
 		// Create the form
 		$form = new \Core\Form\RegistrationForm();
+		$form->setAttribute('action', $this->url()->fromRoute('register'));
+
+		//print_r($this->url('register'));
+		
+		// Process POST requests
 		$request = $this->getRequest();
 
-		// Process POST requests
         if ($request->isPost()) {
 			// Setup the form data and input filter
 			$form->setData($request->getPost());
@@ -89,7 +93,21 @@ class AuthController extends AbstractActionController
 
 		// Create the form		
 		$form = new \Core\Form\LoginForm();
+		$form->setAttribute('action', $this->url()->fromRoute('login'));
+		
+		// Set the referer in the form
 		$request = $this->getRequest();
+		$referer = $request->getHeader('Referer');
+		
+		if ($referer) {
+			$host = $request->getUri()->getHost();
+			
+			if ($host == $referer->uri()->getHost()) {
+				$form->setData(array(
+					'referer' => $referer->uri()->getPath()
+				));
+			}
+		}
 
 		// Process POST requests
         if ($request->isPost()) {
@@ -136,21 +154,28 @@ class AuthController extends AbstractActionController
 
 						$this->flashMessenger()->addSuccessMessage("You have successfully logged in!");
 
+						if (!empty($data['referer'])) {
+							return $this->redirect()->toUrl($data['referer']);
+						}
+
 						return $this->redirect()->toRoute('home');
 					case Result::FAILURE_IDENTITY_NOT_FOUND:
 					case Result::FAILURE_CREDENTIAL_INVALID:
-						$this->flashMessenger()->addErrorMessage("Invalid Username and/or Password!");
+						$error = "Invalid Username and/or Password!";
 						break;
 					default:
-						$this->flashMessenger()->addErrorMessage("An unknown error occurred.");
+						$error = "An unknown error occurred.";
 						break;
 				}
+			} else {
+				$error = "Username and Password are both required!";
 			}
 		}
 
 		// Display the form
 		$view = new ViewModel(array(
-			'form' => $form
+			'form' => $form,
+			'error' => $error
 		));
 		
 		$view->setTemplate('auth/login');

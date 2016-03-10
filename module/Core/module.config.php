@@ -49,7 +49,7 @@ return array(
 	'controllers' => array(
 		'invokables' => array(
 			'Core\Index' => 'Core\Controller\IndexController',
-            'Core\Auth'  => 'Core\Controller\AuthController',	
+            'Core\Auth'  => 'Core\Controller\AuthController',
 		),
 	),
 	'view_manager' => array(
@@ -59,18 +59,23 @@ return array(
 		'not_found_template'       => 'error/404',
 		'exception_template'       => 'error/exception',
 		'template_map' => array(
-			'layout/layout'           => __DIR__ . '/../../styles/default/wrapper.phtml',
+			'layout/layout'        => 'styles/default/wrapper.phtml',
 		),
 		'template_path_stack' => array(
-			__DIR__ . '/../../styles/default',
+			'styles/default',
 		),
+	),
+	'view_helpers' => array(
+		'invokables'=> array(
+			'FormHasErrors' => 'Core\Form\View\Helper\FormHasErrors',
+		)
 	),
     'service_manager' => array(
         'factories' => array(
-			'primary' => 'Core\Navigation\Service\PrimaryNavigationFactory',
-			'secondary' => 'Core\Navigation\Service\SecondaryNavigationFactory',
-			'footer' => 'Core\Navigation\Service\FooterNavigationFactory',
-			'user' => 'Core\Navigation\Service\UserNavigationFactory',
+			'Primary'   => 'Core\Navigation\Service\PrimaryNavigationFactory',
+			'Secondary' => 'Core\Navigation\Service\SecondaryNavigationFactory',
+			'Footer'    => 'Core\Navigation\Service\FooterNavigationFactory',
+			'User'      => 'Core\Navigation\Service\UserNavigationFactory',
         ),
 		'aliases' => array(
 			'Zend\Authentication\AuthenticationService' => 'AuthService',

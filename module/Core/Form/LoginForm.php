@@ -17,6 +17,7 @@ class LoginForm extends Form
 			'name' => 'username',
 			'attributes' => array(
 				'type'  => 'text',
+				'placeholder' => 'Username',
 			),
 			'options' => array(
 				'label' => 'Username',
@@ -28,6 +29,7 @@ class LoginForm extends Form
 			'name' => 'password',
 			'attributes' => array(
 				'type'  => 'password',
+				'placeholder' => 'Password',
 			),
 			'options' => array(
 				'label' => 'Password',
@@ -41,6 +43,12 @@ class LoginForm extends Form
 			'options' => array(
 				'label' => 'Remember Me?',
 			),
+		));
+
+		// Add the referer field
+		$this->add(array(
+			'name' => 'referer',
+			'type' => 'hidden',
 		));
 
 		// Add the submit button
