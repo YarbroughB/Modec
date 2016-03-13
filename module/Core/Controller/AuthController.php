@@ -20,7 +20,7 @@ class AuthController extends AbstractActionController
 
 		// Check if the user is logged in
 		if ($auth->hasIdentity()) {
-			$this->flashMessenger()->addErrorMessage("You are logged in!");
+			$this->flashMessenger()->addSuccessMessage("You are logged in!");
 			return $this->redirect()->toRoute('home');
 		}
 

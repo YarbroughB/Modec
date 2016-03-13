@@ -44,12 +44,26 @@ return array(
 					),
 				),
 			),
+			'admin' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route'    => '/admin[/:action]',
+					'constraints' => array(
+                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+					'defaults' => array(
+						'controller'    => 'Core\Admin',
+						'action'        => 'index',
+					),
+				),
+			),
 		),
 	),
 	'controllers' => array(
 		'invokables' => array(
 			'Core\Index' => 'Core\Controller\IndexController',
             'Core\Auth'  => 'Core\Controller\AuthController',
+			'Core\Admin' => 'Core\Controller\AdminController',
 		),
 	),
 	'view_manager' => array(
