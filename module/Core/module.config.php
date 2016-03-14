@@ -106,29 +106,31 @@ return array(
 				'route' => 'admin',
 				'order' => 100,
 			),
+			
+			// These should be done using routes actually!
 			array(
 				'label' => 'Users',
-				'uri'  => 'admin/users',
+				'uri'  => '/admin/users',
 				'order' => 200,
 			),
 			array(
 				'label' => 'Routes',
-				'uri'  => 'admin/routes',
+				'uri'  => '/admin/routes',
 				'order' => 300,
 			),
 			array(
 				'label' => 'Settings',
-				'uri'  => 'admin/settings',
+				'uri'  => '/admin/settings',
 				'order' => 400,
 			),
 			array(
 				'label' => 'Resources',
-				'uri'  => 'admin/resources',
+				'uri'  => '/admin/resources',
 				'order' => 500,
 			),
 			array(
 				'label' => 'Links',
-				'uri'  => 'admin/links',
+				'uri'  => '/admin/links',
 				'order' => 600,
 			),
 		),

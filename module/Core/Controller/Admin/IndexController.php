@@ -25,7 +25,7 @@ class IndexController extends AbstractAdminActionController
 	public function usersAction()
 	{
 		$view = new ViewModel();
-		$view->setTemplate('mockups\users');
+		$view->setTemplate('mockups/users');
 
 		return $view;
 	}
