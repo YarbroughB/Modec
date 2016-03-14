@@ -1,0 +1,45 @@
+<ul class="<?php echo $this->navigation()->menu()->getUlClass() ?>">
+	<?php foreach ($this->container as $page):
+		$liClass = array();
+		
+		if ($page->isActive()) {
+			$liClass[] = 'active';
+		}
+
+		if ($page->hasPages()) {
+			if (empty($liClass)) {
+				foreach ($page->getPages() as $child) {
+					if ($child->isActive()) {
+						$liClass[] = 'active';
+						break;
+					}
+				}
+			}
+
+			$liClass[] = 'dropdown';
+		}
+	?>
+		<li class="<?php echo implode(' ', $liClass) ?>">
+			<?php if ($page->hasPages()): ?>			
+				<a href="<?php echo $page->getHref() ?>" target="<?php echo $page->getTarget() ?>" class="dropdown-toggle" data-toggle="dropdown">
+					<?php echo $page->getLabel() ?>
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<?php $subpages = new \Zend\Navigation\Navigation($page->getPages()); ?>
+					<?php foreach ($subpages as $child): ?>
+						<li class="<?php echo ($child->isActive() ? 'active' : '') ?>">
+							<a href="<?php echo $child->getHref() ?>" target="<?php echo $child->getTarget() ?>">
+								<?php echo $child->getLabel() ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php else: ?>			
+				<a href="<?php echo $page->getHref() ?>" target="<?php echo $page->getTarget() ?>">
+					<?php echo $page->getLabel() ?>
+				</a>
+			<?php endif; ?>
+		</li>
+	<?php endforeach; ?>
+</ul>

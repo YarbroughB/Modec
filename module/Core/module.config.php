@@ -44,12 +44,26 @@ return array(
 					),
 				),
 			),
+			'admin' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route'    => '/admin[/:action]',
+					'constraints' => array(
+						'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+					),
+					'defaults' => array(
+						'controller'    => 'Core\Admin\Index',
+						'action'        => 'index',
+					),
+				),
+			),
 		),
 	),
 	'controllers' => array(
 		'invokables' => array(
-			'Core\Index' => 'Core\Controller\IndexController',
-            'Core\Auth'  => 'Core\Controller\AuthController',
+			'Core\Index'       => 'Core\Controller\IndexController',
+			'Core\Auth'        => 'Core\Controller\AuthController',
+			'Core\Admin\Index' => 'Core\Controller\Admin\IndexController',
 		),
 	),
 	'view_manager' => array(
@@ -76,6 +90,7 @@ return array(
 			'Secondary' => 'Core\Navigation\Service\SecondaryNavigationFactory',
 			'Footer'    => 'Core\Navigation\Service\FooterNavigationFactory',
 			'User'      => 'Core\Navigation\Service\UserNavigationFactory',
+			'Admin'     => 'Core\Navigation\Service\AdminNavigationFactory',
         ),
 		'aliases' => array(
 			'Zend\Authentication\AuthenticationService' => 'AuthService',
@@ -84,4 +99,38 @@ return array(
 			'AuthService' => 'Zend\Authentication\AuthenticationService',
 		),
     ),
+	'navigation' => array(
+		'admin' => array(
+			array(
+				'label' => 'Dashboard',
+				'route' => 'admin',
+				'order' => 100,
+			),
+			array(
+				'label' => 'Users',
+				'uri'  => 'admin/users',
+				'order' => 200,
+			),
+			array(
+				'label' => 'Routes',
+				'uri'  => 'admin/routes',
+				'order' => 300,
+			),
+			array(
+				'label' => 'Settings',
+				'uri'  => 'admin/settings',
+				'order' => 400,
+			),
+			array(
+				'label' => 'Resources',
+				'uri'  => 'admin/resources',
+				'order' => 500,
+			),
+			array(
+				'label' => 'Links',
+				'uri'  => 'admin/links',
+				'order' => 600,
+			),
+		),
+	),
 );
