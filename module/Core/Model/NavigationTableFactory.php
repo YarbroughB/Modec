@@ -6,9 +6,6 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
-
-use Core\Model\NavigationElement;
-use Core\Model\NavigationTable;
  
 class NavigationTableFactory implements FactoryInterface
 {

@@ -27,8 +27,6 @@ class AuthController extends AbstractActionController
 		// Create the form
 		$form = new \Core\Form\RegistrationForm();
 		$form->setAttribute('action', $this->url()->fromRoute('register'));
-
-		//print_r($this->url('register'));
 		
 		// Process POST requests
 		$request = $this->getRequest();

@@ -3,31 +3,42 @@
 namespace Core\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Sql\Select;
 
-class UsersTable
+class UsersTable extends AbstractTable
 {
-	protected $tableGateway;
-
-	public function __construct(TableGateway $tableGateway)
+	protected function getSafeSelect()
 	{
-		$this->tableGateway = $tableGateway;
+		$columns = $this->getColumns();
+		
+		unset($columns['password']);
+		unset($columns['password_salt']);
+
+		$select = new Select();
+
+		$select->from(
+			$this->tableGateway->getTable()
+		);
+
+		$select->columns($columns);
+
+		return $select;
 	}
-	
+
 	public function fetchAll()
 	{
-		return $this->tableGateway->select();
+		return $this->tableGateway->selectWith(
+			$this->getSafeSelect()
+		);
 	}
 
 	public function getUser($userid)
 	{
-		$rowset = $this->tableGateway->select(array('userid' => (int) $userid));
-		$row = $rowset->current();
+		$rowset = $this->tableGateway->selectWith(
+			$this->getSafeSelect()
+		);
 
-		if (!$row) {
-			throw new \Exception("Could not find user with id $userid");
-		}
-
-		return $row;
+		return $rowset->current();
 	}
 
 	public function saveUser(User $user)
@@ -36,18 +47,18 @@ class UsersTable
 		$userid = (int) $user->userid;
 
 		if ($userid == 0) {
-			$this->tableGateway->insert($data);
-		} else {
-			if ($this->getUser($userid)) {
-				$this->tableGateway->update($data, array('userid' => $userid));
-			} else {
-				throw new \Exception('Attempting to edit a user that does not exist');
-			}
+			return $this->tableGateway->insert($data);
 		}
+
+		if ($this->getUser($userid)) {
+			return $this->tableGateway->update($data, array('userid' => $userid));
+		}
+		
+		return null;
 	}
 	
 	public function deleteUser($userid)
 	{
-		$this->tableGateway->delete(array('userid' => (int) $userid));
+		return $this->tableGateway->delete(array('userid' => (int) $userid));
 	}	
 }

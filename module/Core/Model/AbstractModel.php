@@ -2,23 +2,8 @@
 
 namespace Core\Model;
 
-class User extends AbstractModel
+abstract class AbstractModel
 {
-	public $userid;
-	public $username;
-	public $email;
-	public $password;
-	public $password_salt;
-	public $usergroup;
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public function __construct($data = null) 
 	{
 		if ($data) {

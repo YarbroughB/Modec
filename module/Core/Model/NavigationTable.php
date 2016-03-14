@@ -2,23 +2,10 @@
 
 namespace Core\Model;
 
-use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\Sql\Where;
 
-class NavigationTable
+class NavigationTable extends AbstractTable
 {
-	protected $tableGateway;
-
-	public function __construct(TableGateway $tableGateway)
-	{
-		$this->tableGateway = $tableGateway;
-	}
-	
-	public function fetchAll()
-	{
-		return $this->tableGateway->select();
-	}
-	
 	public function fetchAllActive()
 	{
 		return $this->tableGateway->select(array('active' => 1));

@@ -2,8 +2,9 @@
 
 namespace Cms\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+
+use Core\Controller\AbstractActionController;
 
 class IndexController extends AbstractActionController
 {

@@ -16,14 +16,14 @@ class UsersTableFactory implements FactoryInterface
 
 		// Setup the result prototype
 		$resultSetPrototype = new ResultSet();
-		$resultSetPrototype->setArrayObjectPrototype(new User());
+		$resultSetPrototype->setArrayObjectPrototype(new Usergroup());
 
 		// Create the table gateway
 		$tableGateway = new TableGateway(
-			'users', $dbAdapter, null, $resultSetPrototype
+			'usergroups', $dbAdapter, null, $resultSetPrototype
 		);
 
 		// Return the table
-		return new UsersTable($tableGateway);
+		return new UsergroupsTable($tableGateway);
 	}
 }
