@@ -130,3 +130,17 @@ footer .container {
 form pre {
 	overflow-x: auto;
 }
+
+/**
+ * Panels
+ */
+.panel-heading {
+    cursor: pointer;
+}
+.panel-pagination {
+    margin: 0 0 !important;
+}
+.panel-container {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}

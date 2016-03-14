@@ -49,7 +49,7 @@ return array(
 				'options' => array(
 					'route'    => '/admin[/:action]',
 					'constraints' => array(
-						'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+						'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
 					),
 					'defaults' => array(
 						'controller'    => 'Core\Admin\Index',
