@@ -5,7 +5,7 @@ return array(
 	'router' => array(
 		'routes' => array(
 			'home' => array(
-				'type'    => 'Literal',
+				'type'    => 'literal',
 				'options' => array(
 					'route'	=> '/',
 					'defaults' => array(
@@ -15,7 +15,7 @@ return array(
 				),
 			),
 			'register' => array(
-				'type'    => 'Literal',
+				'type'    => 'literal',
 				'options' => array(
 					'route'    => '/register',
 					'defaults' => array(
@@ -25,7 +25,7 @@ return array(
 				),
 			),
 			'login' => array(
-				'type'    => 'Literal',
+				'type'    => 'literal',
 				'options' => array(
 					'route'    => '/login',
 					'defaults' => array(
@@ -35,7 +35,7 @@ return array(
 				),
 			),
 			'logout' => array(
-				'type'    => 'Literal',
+				'type'    => 'literal',
 				'options' => array(
 					'route'    => '/logout',
 					'defaults' => array(
@@ -45,15 +45,68 @@ return array(
 				),
 			),
 			'admin' => array(
-				'type'    => 'segment',
+				'type'    => 'literal',
 				'options' => array(
-					'route'    => '/admin[/:action]',
-					'constraints' => array(
-						'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
-					),
+					'route'    => '/admin',
 					'defaults' => array(
 						'controller'    => 'Core\Admin\Index',
 						'action'        => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'users' => array(
+						'type'    => 'segment',
+						'options' => array(
+							'route'       => '/users[/:action]',
+							'constraints' => array(
+								'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
+							),
+							'defaults'    => array(
+								'controller'    => 'Core\Admin\Index',
+								'action'        => 'users',
+							),
+						),
+					),
+					'routes' => array(
+						'type'    => 'literal',
+						'options' => array(
+							'route'       => '/routes',
+							'defaults'    => array(
+								'controller'    => 'Core\Admin\Index',
+								'action'        => 'routes',
+							),
+						),
+					),
+					'settings' => array(
+						'type'    => 'literal',
+						'options' => array(
+							'route'       => '/settings',
+							'defaults'    => array(
+								'controller'    => 'Core\Admin\Index',
+								'action'        => 'settings',
+							),
+						),
+					),
+					'resources' => array(
+						'type'    => 'literal',
+						'options' => array(
+							'route'       => '/resources',
+							'defaults'    => array(
+								'controller'    => 'Core\Admin\Index',
+								'action'        => 'resources',
+							),
+						),
+					),
+					'links' => array(
+						'type'    => 'literal',
+						'options' => array(
+							'route'       => '/links',
+							'defaults'    => array(
+								'controller'    => 'Core\Admin\Index',
+								'action'        => 'links',
+							),
+						),
 					),
 				),
 			),
@@ -106,31 +159,29 @@ return array(
 				'route' => 'admin',
 				'order' => 100,
 			),
-			
-			// These should be done using routes actually!
 			array(
 				'label' => 'Users',
-				'uri'  => '/admin/users',
+				'route' => 'admin/users',
 				'order' => 200,
 			),
 			array(
 				'label' => 'Routes',
-				'uri'  => '/admin/routes',
+				'route' => 'admin/routes',
 				'order' => 300,
 			),
 			array(
 				'label' => 'Settings',
-				'uri'  => '/admin/settings',
+				'route' => 'admin/settings',
 				'order' => 400,
 			),
 			array(
 				'label' => 'Resources',
-				'uri'  => '/admin/resources',
+				'route' => 'admin/resources',
 				'order' => 500,
 			),
 			array(
 				'label' => 'Links',
-				'uri'  => '/admin/links',
+				'route' => 'admin/links',
 				'order' => 600,
 			),
 		),
