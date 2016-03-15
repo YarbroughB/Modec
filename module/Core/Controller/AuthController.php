@@ -43,18 +43,9 @@ class AuthController extends AbstractActionController
 				// Get the data from the form
 				$data = $form->getData();
 
-				// Create the password salt
-				$data['password_salt'] = '';
-				
-				for ($i = 0; $i < 32; $i++) {
-					$data['password_salt'] .= chr(rand(33, 126));
-				}
-
-				// Encrypt the password
-				$data['password'] = md5($data['password'] . $data['password_salt']);
-				
 				// Set the default usergroup
 				$data['usergroup'] = 2;  // Registered Users
+				//! @todo This should come from a setting of some kind!
 
 				// Create the user
 				$user = new User();

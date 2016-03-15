@@ -6,7 +6,7 @@ use Zend\Db\Sql\Where;
 
 class NavigationTable extends AbstractTable
 {
-	static protected $table = 'navigation';
+	static protected $table   = 'navigation';
 	static protected $columns = array(
 		'id', 'label', 'route', 'uri', 'menu', 'order', 'parent', 'module', 'active'
 	);

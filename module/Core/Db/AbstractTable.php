@@ -11,8 +11,10 @@ use Zend\Db\Sql\Where;
 
 abstract class AbstractTable
 {
+	static protected $prefix;
 	static protected $table;
 	static protected $columns;
+	static protected $prefixedColumns;
 
 	protected $tableGateway;
 
@@ -31,6 +33,29 @@ abstract class AbstractTable
 	static function getColumns()
 	{
 		return static::$columns;
+	}
+
+	static function getPrefixedColumns()
+	{
+		if (!static::$prefixedColumns) {
+			static::$prefixedColumns = array();
+
+			foreach (UsergroupsTable::getColumns() as $column) {
+				static::$prefixedColumns[static::getPrefix() . $column] = $column;
+			}
+		}
+
+		return static::$prefixedColumns;
+	}
+	
+	// Get Column Prefix
+	static public function getPrefix()
+	{
+		if (!static::$prefix) {
+			static::$prefix = static::getTable();
+		}
+
+		return static::$prefix . '_';
 	}
 
 	// Query Operations
@@ -58,17 +83,6 @@ abstract class AbstractTable
 	{
 		return $this->tableGateway->update($set, $where);
 	}
-
-	/*protected function updateOrInsert($set, $where = null)
-	{
-		$affectedRows = $this->update($set, $where);
-
-		if (!$affectedRows) {
-			$affectedRows = $this->insert($set);
-		}
-
-		return $affectedRows;
-	}*/
 
 	protected function updateWith(Update $update)
 	{

@@ -4,7 +4,8 @@ namespace Core\Db;
 
 class UsergroupsTable extends AbstractTable
 {
-	static protected $table = 'usergroups';
+	static protected $prefix  = 'usergroup';
+	static protected $table   = 'usergroups';
 	static protected $columns = array('id', 'title');
 
 	public function getGroup($groupid)
