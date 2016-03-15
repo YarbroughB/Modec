@@ -52,6 +52,9 @@ class AuthController extends AbstractActionController
 
 				// Encrypt the password
 				$data['password'] = md5($data['password'] . $data['password_salt']);
+				
+				// Set the default usergroup
+				$data['usergroup'] = 2;  // Registered Users
 
 				// Create the user
 				$user = new User();
@@ -62,7 +65,7 @@ class AuthController extends AbstractActionController
 				$usersTable->saveUser($user);
 
 				// Update the user and redirect
-				$this->flashMessenger()->addSuccessMessage("Registered");
+				$this->flashMessenger()->addSuccessMessage("You have successfully registered!");
 
 				return $this->redirect()->toRoute('login');
 			}
