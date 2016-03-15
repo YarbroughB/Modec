@@ -1,31 +1,25 @@
 <?php
 
 namespace Core\Db;
- 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+
 use Zend\Db\TableGateway\TableGateway;
-use Zend\Db\ResultSet\ResultSet;
 
 use Core\Model\NavigationElement;
- 
-class NavigationTableFactory implements FactoryInterface
+
+class NavigationTableFactory extends AbstractTableFactory
 {
-	public function createService(ServiceLocatorInterface $serviceLocator)
+	protected function getTable()
 	{
-		// Get the db adapter
-		$dbAdapter = $serviceLocator->get('DbAdapter');
+		return NavigationTable::getTable();
+	}
 
-		// Setup the result prototype
-		$resultSetPrototype = new ResultSet();
-		$resultSetPrototype->setArrayObjectPrototype(new NavigationElement());
-
-		// Create the table gateway
-		$tableGateway = new TableGateway(
-			'navigation', $dbAdapter, null, $resultSetPrototype
-		);
-
-		// Return the table
+	protected function getModel()
+	{
+		return new NavigationElement();
+	}
+	
+	protected function createTable(TableGateway $tableGateway)
+	{
 		return new NavigationTable($tableGateway);
 	}
 }

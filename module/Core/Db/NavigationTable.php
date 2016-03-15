@@ -6,9 +6,14 @@ use Zend\Db\Sql\Where;
 
 class NavigationTable extends AbstractTable
 {
+	static protected $table = 'navigation';
+	static protected $columns = array(
+		'id', 'label', 'route', 'uri', 'menu', 'order', 'parent', 'module', 'active'
+	);
+
 	public function fetchAllActive()
 	{
-		return $this->tableGateway->select(array('active' => 1));
+		return $this->select(array('active' => 1));
 	}
 	
 	public function fetchMenu($menu, $loadedModules = null)
@@ -20,6 +25,6 @@ class NavigationTable extends AbstractTable
 
 		$where->in('module', $loadedModules);
 
-		return $this->tableGateway->select($where);
+		return $this->select($where);
 	}
 }

@@ -62,7 +62,7 @@ class AuthController extends AbstractActionController
 
 				// Add the user to the database
 				$usersTable = $this->getServiceLocator()->get('UsersTable');
-				$usersTable->saveUser($user);
+				$usersTable->addUser($user);
 
 				// Update the user and redirect
 				$this->flashMessenger()->addSuccessMessage("You have successfully registered!");

@@ -2,11 +2,14 @@
 
 namespace Core\Db;
 
-class UsersTable extends AbstractTable
+class UsergroupsTable extends AbstractTable
 {
+	static protected $table = 'usergroups';
+	static protected $columns = array('id', 'title');
+
 	public function getGroup($groupid)
 	{
-		$rowset = $this->tableGateway->select(array('id' => (int) $groupid));
+		$rowset = $this->select(array('id' => (int) $groupid));
 		return $rowset->current();
 	}
 }

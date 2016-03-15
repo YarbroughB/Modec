@@ -1,31 +1,25 @@
 <?php
 
 namespace Core\Db;
- 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+
 use Zend\Db\TableGateway\TableGateway;
-use Zend\Db\ResultSet\ResultSet;
 
 use Core\Model\User;
 
-class UsersTableFactory implements FactoryInterface
+class UsersTableFactory extends AbstractTableFactory
 {
-	public function createService(ServiceLocatorInterface $serviceLocator)
+	protected function getTable()
 	{
-		// Get the db adapter
-		$dbAdapter = $serviceLocator->get('DbAdapter');
+		return UsersTable::getTable();
+	}
 
-		// Setup the result prototype
-		$resultSetPrototype = new ResultSet();
-		$resultSetPrototype->setArrayObjectPrototype(new User());
-
-		// Create the table gateway
-		$tableGateway = new TableGateway(
-			'users', $dbAdapter, null, $resultSetPrototype
-		);
-
-		// Return the table
+	protected function getModel()
+	{
+		return new User();
+	}
+	
+	protected function createTable(TableGateway $tableGateway)
+	{
 		return new UsersTable($tableGateway);
 	}
 }
