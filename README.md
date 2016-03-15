@@ -23,28 +23,32 @@ highlight a random gallery).
 
 # Planned Features / Modules
 
- * Core
-	* User Accounts
-		* ~~User Registration~~
-			* ~~Human Verification~~
-			* Email Validation
-		* ~~User Authentication~~
-		* Admin CP
-			* Add Users
-			* Edit Users
-			* Moderate / Ban Users	* Access Control List		* Usergroup Based
-		* Admin CP
-			* Edit Permissions for Resources	* ~~Database Driven Navigation~~
-		* Admin CP
-			* Add Navigation Links
-			* Edit Navigation Links
-			* Disable Navigation Links
-	* Database Driven Routes
-		* Admin CP
-			* Add Routes
-			* Edit Routes
-			* Disable Routes
-	* Database Driven Settings	* Admin CP
- * Content Management System
- * Blog
- * Photo Gallery
+ * [ ] Core
+	* [ ] User Accounts
+		* [x] User Registration
+			* [x] Human Verification
+			* [ ] Email Validation
+		* [x] User Authentication
+		* [ ] Admin CP
+			* [ ] Add Users
+			* [ ] Edit Users
+			* [ ] Moderate / Ban Users
+	* [ ] Access Control List
+		* [ ] Usergroup Based
+		* [ ] Admin CP
+			* [ ] Edit Permissions for Resources
+	* [x] Database Driven Navigation
+		* [ ] Admin CP
+			* [ ] Add Navigation Links
+			* [ ] Edit Navigation Links
+			* [ ] Disable Navigation Links
+	* [ ] Database Driven Routes
+		* [ ] Admin CP
+			* [ ] Add Routes
+			* [ ] Edit Routes
+			* [ ] Disable Routes
+	* [ ] Database Driven Settings
+	* [ ] Admin CP
+ * [ ] Content Management System
+ * [ ] Blog
+ * [ ] Photo Gallery
