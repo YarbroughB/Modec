@@ -16,7 +16,7 @@ abstract class AbstractActionController extends ZendAbstractActionController
 		// Check if the user is logged in
 		if ($user = $this->identity()) {
 			// Grab the user's info from the db to ensure it's fresh
-			$usersTable = $this->getServiceLocator()->get('Core\Model\UsersTable');
+			$usersTable = $this->getServiceLocator()->get('UsersTable');
 			$user = $usersTable->getUser($user->userid);
 
 			$auth = new AuthenticationService();

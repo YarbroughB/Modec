@@ -24,8 +24,8 @@ class Module
 	{
 		return array(
 			'factories' => array(
-				'Core\Model\UsersTable' =>  'Core\Model\UsersTableFactory',
-				'Core\Model\NavigationTable' =>  'Core\Model\NavigationTableFactory',
+				'UsersTable'      => 'Core\Db\UsersTableFactory',
+				'NavigationTable' => 'Core\Db\NavigationTableFactory',
 			),
 		);
 	}

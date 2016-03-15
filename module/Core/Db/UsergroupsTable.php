@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Model;
+namespace Core\Db;
 
 class UsersTable extends AbstractTable
 {

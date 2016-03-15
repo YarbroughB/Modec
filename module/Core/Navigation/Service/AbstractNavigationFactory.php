@@ -15,7 +15,7 @@ abstract class AbstractNavigationFactory extends ZendAbstractNavigationFactory
 			$modules = array_keys($moduleManager->getLoadedModules());
 		
 			// Fetch the navigation items from the db
-			$navigationTable = $serviceLocator->get('Core\Model\NavigationTable');
+			$navigationTable = $serviceLocator->get('NavigationTable');
 			$navigationItems = $navigationTable->fetchMenu($this->getName(), $modules);
 
 			// Build the navigation config array

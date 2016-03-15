@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Model;
+namespace Core\Db;
 
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\Sql\Select;

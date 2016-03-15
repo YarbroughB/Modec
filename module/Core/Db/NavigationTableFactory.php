@@ -1,13 +1,15 @@
 <?php
 
-namespace Core\Model;
+namespace Core\Db;
  
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
+
+use Core\Model\NavigationElement;
  
-class UsersTableFactory implements FactoryInterface
+class NavigationTableFactory implements FactoryInterface
 {
 	public function createService(ServiceLocatorInterface $serviceLocator)
 	{
@@ -16,14 +18,14 @@ class UsersTableFactory implements FactoryInterface
 
 		// Setup the result prototype
 		$resultSetPrototype = new ResultSet();
-		$resultSetPrototype->setArrayObjectPrototype(new User());
+		$resultSetPrototype->setArrayObjectPrototype(new NavigationElement());
 
 		// Create the table gateway
 		$tableGateway = new TableGateway(
-			'users', $dbAdapter, null, $resultSetPrototype
+			'navigation', $dbAdapter, null, $resultSetPrototype
 		);
 
 		// Return the table
-		return new UsersTable($tableGateway);
+		return new NavigationTable($tableGateway);
 	}
 }

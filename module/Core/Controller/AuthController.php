@@ -9,7 +9,7 @@ use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Result;
 
 use Core\Model\User;
-use Core\Model\UsersTable;
+use Core\Db\UsersTable;
 
 class AuthController extends AbstractActionController
 {
@@ -61,7 +61,7 @@ class AuthController extends AbstractActionController
 				$user->exchangeArray($data);
 
 				// Add the user to the database
-				$usersTable = $this->getServiceLocator()->get('Core\Model\UsersTable');
+				$usersTable = $this->getServiceLocator()->get('UsersTable');
 				$usersTable->saveUser($user);
 
 				// Update the user and redirect
