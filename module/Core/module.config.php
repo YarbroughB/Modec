@@ -147,10 +147,10 @@ return array(
         ),
 		'aliases' => array(
 			'Zend\Authentication\AuthenticationService' => 'AuthService',
+			'TemplatePathResolver' => 'Zend\View\Resolver\TemplatePathStack',
 		),
 		'invokables' => array(
-			'AuthService'          => 'Zend\Authentication\AuthenticationService',
-			'TemplatePathResolver' => 'Zend\View\Resolver\TemplatePathStack',
+			'AuthService' => 'Zend\Authentication\AuthenticationService',
 		),
     ),
 	'navigation' => array(
