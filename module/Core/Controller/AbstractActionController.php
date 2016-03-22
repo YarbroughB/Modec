@@ -10,21 +10,43 @@ abstract class AbstractActionController extends ZendAbstractActionController
 {
 	public function onDispatch(MvcEvent $event)
 	{
-		// Run the parent dispatch
-		parent::onDispatch($event);
+		// Check that the user is allowed to access the site
+		$user = $this->identity();
 
-		// Check if the user is logged in
-		if ($user = $this->identity()) {
-			// Grab the user's info from the db to ensure it's fresh
-			$usersTable = $this->getServiceLocator()->get('UsersTable');
-			$user = $usersTable->getUser($user->userid);
-
-			$auth = new AuthenticationService();
-			$storage = $auth->getStorage();
-			$storage->write($user);
+		if ($user && $user->usergroup->type == 'BANNED') {
+			$actionResponse = $this->permissionDenied();
+			$event->setResult($actionResponse);
+			return $actionResponse;
 		}
 
-		// Return the dispatch result
-		return $event->getResult($actionResponse);
+		// Run the parent dispatch
+		return parent::onDispatch($event);
+	}
+
+	protected function hasPermission($resource, $privilege = null)
+	{
+		$acl = $this->event->getViewModel()->acl;
+		$user = $this->identity();
+		
+		if (!$user) {
+			// $usergroupsTable = $this->event->getApplication()->getServiceManager()->get('UsergroupsTable');
+			// $role = $usergroupsTable->getGuestGroupId();
+			$role = 1; // Guest
+			//! @todo This should come from a setting of some kind!	
+		} else {
+			$role = $user->usergroup->id;
+		}
+
+		return $acl->isAllowed($role, $resource, $privilege);
+	}
+	
+	protected function permissionDenied()
+	{
+		$this->response->setStatusCode(403);
+
+		$view = new \Zend\View\Model\ViewModel();
+		$view->setTemplate('error/403');
+
+		return $view;
 	}
 }

@@ -6,4 +6,5 @@ class Usergroup extends AbstractModel
 {
 	public $id;
 	public $title;
+	public $type;
 }

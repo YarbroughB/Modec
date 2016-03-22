@@ -7,7 +7,9 @@ class NavigationElement extends AbstractModel
 	public $id;
 	public $label;
 	public $route;
-	public $uri;
+	public $uri;	
+	public $resource;
+	public $privilege;	
 	public $menu;
 	public $order;
 	public $parent;

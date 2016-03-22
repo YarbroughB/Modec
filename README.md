@@ -24,7 +24,7 @@ highlight a random gallery).
 # Planned Features / Modules
 
  * [ ] Core
-	* [ ] User Accounts
+	* [x] User Accounts
 		* [x] User Registration
 			* [x] Human Verification
 			* [ ] Email Validation
@@ -33,8 +33,8 @@ highlight a random gallery).
 			* [ ] Add Users
 			* [ ] Edit Users
 			* [ ] Moderate / Ban Users
-	* [ ] Access Control List
-		* [ ] Usergroup Based
+	* [x] Access Control List
+		* [x] Usergroup Based
 		* [ ] Admin CP
 			* [ ] Edit Permissions for Resources
 	* [x] Database Driven Navigation
@@ -48,7 +48,7 @@ highlight a random gallery).
 			* [ ] Edit Routes
 			* [ ] Disable Routes
 	* [ ] Database Driven Settings
-	* [ ] Admin CP
+	* [x] Admin CP
  * [ ] Content Management System
  * [ ] Blog
  * [ ] Photo Gallery

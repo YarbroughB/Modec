@@ -20,14 +20,18 @@ abstract class AbstractNavigationFactory extends ZendAbstractNavigationFactory
 
 			// Build the navigation config array
 			$navigation = array();
-
+			
 			foreach ($navigationItems as $element) {			
 				$item = isset($navigation[$element->id]) ? $navigation[$element->id] : array();
 
-				$item['label'] = $element->label;
-				$item['route'] = $element->route;
-				$item['uri']   = $element->uri;
-				$item['order'] = $element->order;
+				$item['label']     = $element->label;
+				$item['order']     = $element->order;
+
+				$item['route']     = $element->route;
+				$item['uri']       = $element->uri;
+
+				$item['resource']  = $element->resource;
+				$item['privilege'] = $element->privilege;
 
 				if (!isset($element->parent)) {
 					$navigation[$element->id] = $item;

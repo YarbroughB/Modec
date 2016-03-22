@@ -8,7 +8,7 @@ class NavigationTable extends AbstractTable
 {
 	static protected $table   = 'navigation';
 	static protected $columns = array(
-		'id', 'label', 'route', 'uri', 'menu', 'order', 'parent', 'module', 'active'
+		'id', 'label', 'route', 'uri', 'resource', 'priviledge', 'menu', 'order', 'parent', 'module', 'active'
 	);
 
 	public function fetchAllActive()

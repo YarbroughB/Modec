@@ -10,12 +10,18 @@ abstract class AbstractAdminActionController extends AbstractActionController
 {
 	public function onDispatch(MvcEvent $event)
 	{
-		// Run the parent dispatch
-		parent::onDispatch($event);
-
 		// Redirect to login if the user is not logged in
-		if (!$this->identity()) {
+		$user = $this->identity();
+
+		if (!$user) {
 			return $this->redirect()->toRoute('login');
+		}
+		
+		// Check that the user is allowed to access the admin cp
+		if ($user->usergroup->type != 'ADMIN') {
+			$actionResponse = $this->permissionDenied();
+			$event->setResult($actionResponse);
+			return $actionResponse;
 		}
 
 		// Set the admin template stack path
@@ -26,8 +32,8 @@ abstract class AbstractAdminActionController extends AbstractActionController
 	
 		// Set the admin layout
 		$this->layout('wrapper.phtml');
-		
-		// Return the dispatch result
-		return $event->getResult($actionResponse);
+
+		// Run the parent dispatch
+		return parent::onDispatch($event);
 	}
 }

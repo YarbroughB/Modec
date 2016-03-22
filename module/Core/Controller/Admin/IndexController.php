@@ -21,9 +21,13 @@ class IndexController extends AbstractAdminActionController
 	
 	
 	
-	// All the ones below this should be their own files, but for now this will do
+	//! @todo Move everything below this to their own files
 	public function usersAction()
 	{
+		if (!$this->hasPermission('admin/users', 'view')) {
+			return $this->permissionDenied();
+		}
+
 		$view = new ViewModel();
 		$view->setTemplate('mockups/users');
 
@@ -32,6 +36,10 @@ class IndexController extends AbstractAdminActionController
 	
 	public function routesAction()
 	{
+		if (!$this->hasPermission('admin/routes', 'view')) {
+			return $this->permissionDenied();
+		}
+
 		$view = new ViewModel();
 		$view->setTemplate('mockups/routes');
 

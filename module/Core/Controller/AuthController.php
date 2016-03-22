@@ -2,7 +2,6 @@
 
 namespace Core\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 use Zend\Authentication\AuthenticationService;
@@ -20,7 +19,7 @@ class AuthController extends AbstractActionController
 
 		// Check if the user is logged in
 		if ($auth->hasIdentity()) {
-			$this->flashMessenger()->addSuccessMessage("You are logged in!");
+			$this->flashMessenger()->addSuccessMessage("You are already registered!");
 			return $this->redirect()->toRoute('home');
 		}
 
