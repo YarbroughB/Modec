@@ -5,9 +5,10 @@ return array(
 	'router' => array(
 		'routes' => array(
 			'home' => array(
-				'type'    => 'literal',
-				'options' => array(
-					'route'	=> '/',
+				'type'     => 'literal',
+				'priority' => 100,
+				'options'  => array(
+					'route'	   => '/',
 					'defaults' => array(
 						'controller' => 'Core\Index',
 						'action'     => 'index',
@@ -15,8 +16,9 @@ return array(
 				),
 			),
 			'register' => array(
-				'type'    => 'literal',
-				'options' => array(
+				'type'     => 'literal',
+				'priority' => 100,
+				'options'  => array(
 					'route'    => '/register',
 					'defaults' => array(
 						'controller'    => 'Core\Auth',
@@ -25,8 +27,9 @@ return array(
 				),
 			),
 			'login' => array(
-				'type'    => 'literal',
-				'options' => array(
+				'type'     => 'literal',
+				'priority' => 100,
+				'options'  => array(
 					'route'    => '/login',
 					'defaults' => array(
 						'controller'    => 'Core\Auth',
@@ -35,8 +38,9 @@ return array(
 				),
 			),
 			'logout' => array(
-				'type'    => 'literal',
-				'options' => array(
+				'type'     => 'literal',
+				'priority' => 100,
+				'options'  => array(
 					'route'    => '/logout',
 					'defaults' => array(
 						'controller'    => 'Core\Auth',
@@ -45,8 +49,9 @@ return array(
 				),
 			),
 			'admin' => array(
-				'type'    => 'literal',
-				'options' => array(
+				'type'     => 'literal',
+				'priority' => 100,
+				'options'  => array(
 					'route'    => '/admin',
 					'defaults' => array(
 						'controller'    => 'Core\Admin\Index',
@@ -56,8 +61,9 @@ return array(
 				'may_terminate' => true,
 				'child_routes' => array(
 					'users' => array(
-						'type'    => 'segment',
-						'options' => array(
+						'type'     => 'segment',
+						'priority' => 100,
+						'options'  => array(
 							'route'       => '/users[/:action]',
 							'constraints' => array(
 								'action'  => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -69,8 +75,9 @@ return array(
 						),
 					),
 					'routes' => array(
-						'type'    => 'literal',
-						'options' => array(
+						'type'     => 'literal',
+						'priority' => 100,
+						'options'  => array(
 							'route'       => '/routes',
 							'defaults'    => array(
 								'controller'    => 'Core\Admin\Index',
@@ -79,8 +86,9 @@ return array(
 						),
 					),
 					'settings' => array(
-						'type'    => 'literal',
-						'options' => array(
+						'type'     => 'literal',
+						'priority' => 100,
+						'options'  => array(
 							'route'       => '/settings',
 							'defaults'    => array(
 								'controller'    => 'Core\Admin\Index',
@@ -89,8 +97,9 @@ return array(
 						),
 					),
 					'resources' => array(
-						'type'    => 'literal',
-						'options' => array(
+						'type'     => 'literal',
+						'priority' => 100,
+						'options'  => array(
 							'route'       => '/resources',
 							'defaults'    => array(
 								'controller'    => 'Core\Admin\Index',
@@ -99,8 +108,9 @@ return array(
 						),
 					),
 					'links' => array(
-						'type'    => 'literal',
-						'options' => array(
+						'type'     => 'literal',
+						'priority' => 100,
+						'options'  => array(
 							'route'       => '/links',
 							'defaults'    => array(
 								'controller'    => 'Core\Admin\Index',
