@@ -27,7 +27,7 @@ abstract class AbstractAdminActionController extends AbstractActionController
 		// Set the admin template stack path
 		$serviceManager = $event->getApplication()->getServiceManager();
 
-		$templatePathResolver = $serviceManager->get('Zend\View\Resolver\TemplatePathStack');
+		$templatePathResolver = $serviceManager->get('TemplatePathResolver');
 		$templatePathResolver->setPaths(array('styles/admin'));
 	
 		// Set the admin layout

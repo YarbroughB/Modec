@@ -29,7 +29,7 @@ class RegistrationFilter extends InputFilter
 					'options' => array(
 						'table'   => 'users',
 						'field'   => 'username',
-						'adapter' => $serviceLocator->get('Zend\Db\Adapter\Adapter'),
+						'adapter' => $serviceLocator->get('DbAdapter'),
 					),
 				),
 			),
@@ -59,7 +59,7 @@ class RegistrationFilter extends InputFilter
 					'options' => array(
 						'table'   => 'users',
 						'field'   => 'email',
-						'adapter' => $serviceLocator->get('Zend\Db\Adapter\Adapter'),
+						'adapter' => $serviceLocator->get('DbAdapter'),
 					),
 				),
 			),

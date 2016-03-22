@@ -149,7 +149,8 @@ return array(
 			'Zend\Authentication\AuthenticationService' => 'AuthService',
 		),
 		'invokables' => array(
-			'AuthService' => 'Zend\Authentication\AuthenticationService',
+			'AuthService'          => 'Zend\Authentication\AuthenticationService',
+			'TemplatePathResolver' => 'Zend\View\Resolver\TemplatePathStack',
 		),
     ),
 	'navigation' => array(
