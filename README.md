@@ -50,5 +50,7 @@ highlight a random gallery).
 	* [ ] Database Driven Settings
 	* [x] Admin CP
  * [ ] Content Management System
+	* [x] Stupidly Simple Version
+	* [ ] Advanced Version
  * [ ] Blog
  * [ ] Photo Gallery
