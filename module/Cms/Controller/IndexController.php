@@ -22,9 +22,9 @@ class IndexController extends AbstractActionController
 
 	public function pageAction()
 	{
-		/*if (!$this->hasPermission('cms/page', 'view')) {
+		if (!$this->hasPermission('cms/page', 'view')) {
 			return $this->permissionDenied();
-		}*/  //! @todo Add this to the ACL database.
+		}
 		
 		// Get the page from the request
 		$page = $this->params('page');
