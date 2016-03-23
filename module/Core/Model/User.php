@@ -4,12 +4,12 @@ namespace Core\Model;
 
 class User extends AbstractModel
 {
-	public $userid;
-	public $username;
-	public $email;
-	public $password;
-	public $password_salt;
-	public $usergroup;
+	protected $userid;
+	protected $username;
+	protected $email;
+	protected $password;
+	protected $passwordSalt;
+	protected $usergroup;
 
 	protected function _populate(Array $data) 
 	{
@@ -33,7 +33,7 @@ class User extends AbstractModel
 				$usergroupData['id'] = $data['usergroup'];
 			}
 
-			$this->usergroup = new Usergroup($usergroupData);
+			$this->setUsergroup($usergroupData);
 		}
 	}
 
@@ -46,5 +46,40 @@ class User extends AbstractModel
 		}
 		
 		return $array;
+	}
+
+	protected function setPassword($value)
+	{
+		if (empty($value)) {
+			$this->password = null;
+			$this->passwordSalt = null;
+			return;
+		}
+
+		// Create the password salt
+		$this->passwordSalt = '';
+		
+		for ($i = 0; $i < 32; $i++) {
+			$this->passwordSalt .= chr(rand(33, 126));
+		}
+
+		// Encrypt the password
+		$this->password = md5($value . $this->passwordSalt);
+	}
+	
+	protected function setPasswordSalt($value)
+	{
+		if (!isset($value)) { return; }
+
+		throw new \Exception("Password salt cannot be set manually!");
+	}
+
+	protected function setUsergroup($value)
+	{
+		if (is_array($value)) {
+			$this->usergroup = new Usergroup($value);
+		} else {
+			$this->usergroup = $value;
+		}
 	}
 }

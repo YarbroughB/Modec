@@ -119,7 +119,7 @@ class AuthController extends AbstractActionController
 				
 				// Create the authentication adapter
 				$authAdapter = new \Zend\Authentication\Adapter\DbTable(
-					$dbAdapter, 'users', 'username', 'password', "MD5(CONCAT(?, password_salt))"
+					$dbAdapter, 'users', 'username', 'password', "MD5(CONCAT(?, passwordSalt))"
 				);
 
 				// Setup the authentication adapter
@@ -128,14 +128,14 @@ class AuthController extends AbstractActionController
 
 				// Retrieve the result of the authentication
 				$result = $auth->authenticate($authAdapter);
-
+				
 				// Process the result of the authentication
 				switch ($result->getCode()) {
 					case Result::SUCCESS:
 						$storage = $auth->getStorage();
 						$storage->write(new User($authAdapter->getResultRowObject(
 							null,
-							array('password', 'password_salt')
+							array('password', 'passwordSalt')
 						)));
 
 						if ($data['rememberme']) {

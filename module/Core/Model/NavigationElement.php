@@ -4,25 +4,36 @@ namespace Core\Model;
 
 class NavigationElement extends AbstractModel
 {
-	public $id;
-	public $label;
-	public $route;
-	public $params;
-	public $uri;
-	public $resource;
-	public $privilege;	
-	public $menu;
-	public $order;
-	public $parent;
-	public $module;
-	public $active;
+	protected $id;
+	protected $label;
+	protected $route;
+	protected $params;
+	protected $uri;
+	protected $resource;
+	protected $privilege;	
+	protected $menu;
+	protected $order;
+	protected $parent;
+	protected $module;
+	protected $active;
 
-	protected function _populate(Array $data)
+	public function getArrayCopy()
 	{
-		parent::_populate($data);
+		$array = parent::getArrayCopy($this);
 		
-		if (is_string($data['params'])) {
-			$this->params = unserialize($data['params']);
+		if (is_array($this->params)) {
+			$array['params'] = serialize($this->params);
+		}
+		
+		return $array;
+	}
+	
+	protected function setParams($value)
+	{
+		if (is_string($value)) {
+			$this->params = unserialize($value);
+		} else {
+			$this->params = $value;
 		}
 	}
 }

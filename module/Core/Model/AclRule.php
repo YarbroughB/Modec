@@ -4,9 +4,9 @@ namespace Core\Model;
 
 class AclRule extends AbstractModel
 {
-	public $id;
-	public $usergroup;
-	public $resource;
-	public $privilege;
-	public $action;
+	protected $id;
+	protected $usergroup;
+	protected $resource;
+	protected $privilege;
+	protected $action;
 }

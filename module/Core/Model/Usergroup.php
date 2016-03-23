@@ -4,7 +4,7 @@ namespace Core\Model;
 
 class Usergroup extends AbstractModel
 {
-	public $id;
-	public $title;
-	public $type;
+	protected $id;
+	protected $title;
+	protected $type;
 }

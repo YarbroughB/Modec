@@ -34,19 +34,58 @@ abstract class AbstractModel
 			}
 		}
 
-		// Reuse code we already wrote
+		// Copy the data
 		$this->_populate($data);
 	}
 
 	protected function _populate(Array $data)
 	{
 		foreach ($this as $key => $value) {
-			$this->$key = (!empty($data[$key])) ? $data[$key] : null;
+			$this->__set($key, (!empty($data[$key])) ? $data[$key] : null);
 		}
 	}
 
 	public function getArrayCopy()
 	{
-		return get_object_vars($this);
+		$return = array();
+		
+		foreach ($this as $key => $value) {
+			$return[$key] = $this->__get($key);
+		}
+
+		return $return;
 	}
+
+	public function __get($name)
+	{
+		// Check for a custom getter and use it		
+		if (method_exists($this, 'get' . $name)) {
+			return $this->{'get' . $name}();
+		}
+
+		// Return the value
+		return $this->$name;
+	}
+
+	public function __set($name, $value)
+	{
+		// Check for a custom setter and use it
+		if (method_exists($this, 'set' . $name)) {
+			$this->{'set' . $name}($value);
+			return;
+		}
+
+		// Set the value
+		$this->$name = $value;
+	}
+
+    function __isset($name)
+	{
+        return isset($this->$name);
+    }
+
+    function __unset($name)
+	{
+        unset($this->$name);
+    }
 }

@@ -12,7 +12,7 @@ class UsersTable extends AbstractTable
 	static protected $prefix  = 'user';
 	static protected $table   = 'users';
 	static protected $columns = array(
-		'userid', 'username', 'email', 'password', 'password_salt', 'usergroup'
+		'userid', 'username', 'email', 'password', 'passwordSalt', 'usergroup'
 	);
 
 	protected function select($where = null)
@@ -23,7 +23,7 @@ class UsersTable extends AbstractTable
 
 		$select->columns(array_diff(
 			$this->getColumns(),
-			array('password', 'password_salt')
+			array('password', 'passwordSalt')
 		));
 
 		$select->join(
@@ -49,26 +49,10 @@ class UsersTable extends AbstractTable
 
 		$select->columns(array_diff(
 			$selectState['columns'],
-			array('password', 'password_salt')
+			array('password', 'passwordSalt')
 		));
 
 		return parent::selectWith($select);
-	}
-
-	public function encryptPassword(Array & $data)
-	{
-		// Check if the password was set
-		if (!isset($data['password'])) { return; }
-		
-		// Create the password salt
-		$data['password_salt'] = '';
-		
-		for ($i = 0; $i < 32; $i++) {
-			$data['password_salt'] .= chr(rand(33, 126));
-		}
-
-		// Encrypt the password
-		$data['password'] = md5($data['password'] . $data['password_salt']);
 	}
 
 	public function getUser($userid)
@@ -83,8 +67,7 @@ class UsersTable extends AbstractTable
 	public function addUser(User $user)
 	{
 		$data = $user->getArrayCopy();
-		$this->encryptPassword($data);
-		
+
 		unset($data['userid']);
 		
 		return $this->insert($data);
@@ -93,7 +76,6 @@ class UsersTable extends AbstractTable
 	public function updateUser(User $user)
 	{
 		$data = $user->getArrayCopy();
-		$this->encryptPassword($data);
 
 		return $this->update(
 			$data,

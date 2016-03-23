@@ -4,7 +4,7 @@ namespace Core\Model;
 
 class AclResource extends AbstractModel
 {
-	public $id;
-	public $parent;
-	public $module;
+	protected $id;
+	protected $parent;
+	protected $module;
 }
