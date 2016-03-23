@@ -47,7 +47,7 @@ class CatchAllController extends AbstractActionController
 			$this->getResponse()->setStatusCode(404);
 		}
 		
-		// Render the template
+		// Render the page
 		$view = new ViewModel();
 		$view->setTemplate($template);
 

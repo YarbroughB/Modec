@@ -8,7 +8,18 @@ class IndexController extends AbstractAdminActionController
 {
 	public function indexAction()
 	{
-		$view = new ViewModel();
+		// Get the service locator
+		$serviceLocator = $this->getServiceLocator();
+		
+		// Get a list of all the modules that are loaded
+		$moduleManager = $serviceLocator->get('ModuleManager');
+		$modules = array_keys($moduleManager->getLoadedModules());
+
+		// Render the output
+		$view = new ViewModel(array(
+			'modules' => $modules
+		));
+
 		$view->setTemplate('index');
 
 		return $view;
