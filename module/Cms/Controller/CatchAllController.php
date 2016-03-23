@@ -6,28 +6,21 @@ use Zend\View\Model\ViewModel;
 
 use Core\Controller\AbstractActionController;
 
-class IndexController extends AbstractActionController
+class CatchAllController extends AbstractActionController
 {
-	public function indexAction()
+	public function catchAllAction()
 	{
 		if (!$this->hasPermission('cms', 'view')) {
-			return $this->permissionDenied();
-		}
-
-		$view = new ViewModel();
-		$view->setTemplate('cms/index');
-
-		return $view;
-	}
-
-	public function pageAction()
-	{
-		if (!$this->hasPermission('cms/page', 'view')) {
 			return $this->permissionDenied();
 		}
 		
 		// Get the page from the request
 		$page = $this->params('page');
+		
+		// Check that a page was requested or default to index
+		if (empty($page)) {
+			$page = 'index';
+		}
 
 		// Clean the input
 		//! @note ZF2 seems to already do this for us, but better to be safe than sorry!
@@ -39,7 +32,7 @@ class IndexController extends AbstractActionController
 		$page = str_replace(array_keys($replacements), $replacements, $page);
 		
 		// Set the template
-		$template = 'cms/pages/' . $page;
+		$template = 'cms/' . $page;
 		
 		// Find the template resolver
 		$serviceManager = $this->event->getApplication()->getServiceManager();

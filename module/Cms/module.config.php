@@ -11,27 +11,13 @@ return array(
 				'options'  => array(
 					'route'    => '/',
 					'defaults' => array(
-						'controller' => 'Cms\Index',
-						'action'     => 'index',
+						'controller' => 'Cms\CatchAll',
+						'action'     => 'catchAll',
 					),
 				),
 			),
-			/* Regular CMS route for links that should take you to
-			   cms instead of the home page incase the cms ever gets
-			   moved to not being the homepage anymore. */
+			/* CatchAll route for the CMS. */
 			'cms' => array(
-				'type'     => 'Literal',
-				'priority' => 100,
-				'options'  => array(
-					'route'    => '/',
-					'defaults' => array(
-						'controller' => 'Cms\Index',
-						'action'     => 'index',
-					),
-				),
-			),
-			/* Catchall route for the CMS. */
-			'cmsPage' => array(
 				'type'     => 'Segment',
 				'priority' => -1000, //! @note Given very low priority to not conflict with other routes!
 				'options'  => array(
@@ -40,8 +26,8 @@ return array(
 						'page' => '.*'
 					),
 					'defaults'    => array(
-						'controller' => 'Cms\Index',
-						'action'     => 'page',
+						'controller' => 'Cms\CatchAll',
+						'action'     => 'catchAll',
 					),
 				),
 			),
@@ -49,7 +35,7 @@ return array(
 	),
 	'controllers' => array(
 		'invokables' => array(
-			'Cms\Index' => 'Cms\Controller\IndexController'
+			'Cms\CatchAll' => 'Cms\Controller\CatchAllController'
 		),
 	),
 );
