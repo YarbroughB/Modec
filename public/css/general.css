@@ -131,3 +131,10 @@ footer .container {
 form pre {
 	overflow-x: auto;
 }
+
+/**
+ * Alerts
+ */
+.alert {
+	border-width: 2px 2px 2px 10px;
+}
