@@ -31,7 +31,7 @@ return array(
 				),
 			),
 			/* Catchall route for the CMS. */
-			'cms/page' => array(
+			'cmsPage' => array(
 				'type'     => 'Segment',
 				'priority' => -1000, //! @note Given very low priority to not conflict with other routes!
 				'options'  => array(

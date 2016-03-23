@@ -28,6 +28,7 @@ abstract class AbstractNavigationFactory extends ZendAbstractNavigationFactory
 				$item['order']     = $element->order;
 
 				$item['route']     = $element->route;
+				$item['params']    = $element->params;
 				$item['uri']       = $element->uri;
 
 				$item['resource']  = $element->resource;
