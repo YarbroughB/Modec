@@ -10,6 +10,7 @@ class CatchAllController extends AbstractActionController
 {
 	public function catchAllAction()
 	{
+		// Check if the user has permission to this action
 		if (!$this->hasPermission('cms', 'view')) {
 			return $this->permissionDenied();
 		}

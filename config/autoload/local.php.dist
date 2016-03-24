@@ -1,0 +1,19 @@
+<?php
+/**
+ * Local Configuration Override
+ *
+ * This configuration override file is for overriding environment-specific and
+ * security-sensitive configuration information. Copy this file without the
+ * .dist extension at the end and populate values as needed.
+ *
+ * @note It's a good idea to make sure that your copy of this file is never
+ *       included in your Git Repository for privacy reasons!
+ */
+
+return array(
+	'db' => array(
+		'dsn' => 'mysql:dbname=DBNAME;hostname=localhost',
+		'username' => 'USERNAME',
+		'password' => 'PASSWORD',
+	),
+);

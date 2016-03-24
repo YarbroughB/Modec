@@ -35,6 +35,7 @@ class IndexController extends AbstractAdminActionController
 	//! @todo Move everything below this to their own files
 	public function usersAction()
 	{
+		// Check if the user has permission to this action
 		if (!$this->hasPermission('admin/users', 'view')) {
 			return $this->permissionDenied();
 		}
@@ -47,6 +48,7 @@ class IndexController extends AbstractAdminActionController
 	
 	public function routesAction()
 	{
+		// Check if the user has permission to this action
 		if (!$this->hasPermission('admin/routes', 'view')) {
 			return $this->permissionDenied();
 		}
