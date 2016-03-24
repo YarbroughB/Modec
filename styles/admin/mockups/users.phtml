@@ -1,3 +1,59 @@
+<div data-example-id="panel-without-body-with-table" class="bs-example">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		
+		<form role="search" style="float: right;">
+			<input type="text" placeholder="Search Username" class="form-control" style="height: 30px; margin-top: -5px;" />
+		</form>
+		
+			Browse Users
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th style="text-align: right; width: 75px;">User ID</th>
+					<th>Username</th>
+					<th style="text-align: right">Usergroup</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $i = 20; ?>
+				<?php while($i-- > 0): ?>
+					<tr>
+						<th scope="row" style="text-align: right">#</th>
+						<td><a href="#">Username</a></td>
+						<td style="text-align: right">Usergroup</td>
+					</tr>
+				<?php endwhile; ?>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<nav style="text-align: center;">
+	<ul class="pagination" style="margin: 0px 0px 10px;">
+		<li>
+			<a href="#" aria-label="Previous">
+			<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<li class="active"><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li>
+			<a href="#" aria-label="Next">
+			<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+</nav>
+
+
+
+
+<!--
 <div class="panel-group">
 	<div class="panel panel-default">
 		<div class="panel-heading" data-toggle="collapse" data-target="#collapse0">
@@ -48,3 +104,4 @@
 		</div>
 	</div>
 </div>
+-->
