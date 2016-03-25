@@ -66,9 +66,11 @@
 			</div>
 		</nav>
 		<div class="container">
-			<div class="nojs alert alert-warning">
-				<strong>Warning!</strong> For the best browsing experience, please enable JavaScript in your browser settings. 
-			</div>
+			<noscript>
+				<div class="alert alert-warning">
+					<strong>Warning!</strong> For the best browsing experience, please enable JavaScript in your browser settings. 
+				</div>
+			</noscript>
 			<?php
 				$flashMessenger = $this->flashMessenger();
 				$flashMessenger->setMessageOpenFormat('<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>')
