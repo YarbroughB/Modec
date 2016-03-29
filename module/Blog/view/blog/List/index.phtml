@@ -1,0 +1,12 @@
+ <h1>Blog Module</h1>
+ 
+ <?php foreach ($this->posts as $post): ?>
+ <article>
+     <h1 id="post<?= $post->getPostid() ?>"><?= $post->getPosttitle() ?></h1>
+     <p>
+         <?= $post->getPosttext() ?> <br> 
+		 <?= $post->getUserid() ?> 
+     </p>
+ </article>
+ <?php endforeach ?> 
+ 

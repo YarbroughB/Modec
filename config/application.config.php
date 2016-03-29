@@ -3,7 +3,8 @@
 return array(
 	'modules' => array(
 		'Core',
-		'Cms'
+		'Cms', 
+		'Blog'
 	),
 	'module_listener_options' => array(
 		'module_paths' => array(
