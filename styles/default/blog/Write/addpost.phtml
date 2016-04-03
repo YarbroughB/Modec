@@ -1,0 +1,14 @@
+ <?php
+ $form = $this->form;
+ $form->setAttribute('action', $this->url());
+ $form->prepare();
+ /* use 
+    $dateformat = date("Y/m/d"); 
+	to get date and fill in this value in the dateformat box while adding a post
+	and the box may be hidden coz user don't need to see post date. 
+ */
+ echo $this->form()->openTag($form);
+
+ echo $this->formCollection($form);
+
+ echo $this->form()->closeTag();

@@ -1,0 +1,19 @@
+<html>
+<h1>Blog Title</h1>
+
+<?php  
+	foreach ($this->posts as $post): 
+?>
+<article class="container col-md-11">
+	<h2 id="post<?= $post->getPostid() ?>"><?= $post->getPosttitle() ?></h2>
+	<p>
+		<?= $post->getPosttext() ?> <br> 
+	</p>
+	<?php echo "Posted By : " ?> 
+	<?= $post->getUserid() ?> 
+	<?php echo '<br>' . "Posted On : " ?>
+	<?= $post->getDateformat() ?>
+</article>
+<hr>
+<?php endforeach ?>  
+</html> 
