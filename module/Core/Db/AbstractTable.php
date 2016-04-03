@@ -71,12 +71,14 @@ abstract class AbstractTable
 
 	protected function insert($set)
 	{
-		return $this->tableGateway->insert($set);
+		$this->tableGateway->insert($set);
+		return $this->getLastInsertValue();
 	}
 
 	protected function insertWith(Insert $insert)
 	{
-		return $this->tableGateway->insertWith($insert);
+		$this->tableGateway->insertWith($insert);
+		return $this->getLastInsertValue();
 	}
 
 	protected function update($set, $where = null)
@@ -97,6 +99,11 @@ abstract class AbstractTable
 	protected function deleteWith(Delete $delete)
 	{
 		return $this->tableGateway->deleteWith($delete);
+	}
+	
+	public function getLastInsertValue()
+	{
+		return $this->tableGateway->lastInsertValue;
 	}
 	
 	// Default Public Operations

@@ -1,0 +1,31 @@
+<?php
+	// Add the head title
+	$this->headTitle('Blog');
+
+	// Add the page css
+	$this->headLink()->prependStylesheet($this->basePath('css/blog.css'));
+?>
+
+<h1>Blog</h1>
+
+<!-- @todo Handle when there are no posts to display! -->
+
+<?php if (true || $this->hasPermission('blog', 'add')): ?> <!-- @todo Make the permission helper and fix this! -->
+	<a href="<?php echo $this->url('blog/add'); ?>">Add New Post</a>
+<?php endif; ?>
+
+<?php foreach ($this->posts as $post): ?>
+	<article id="blog-post-<?php echo $post->id; ?>" class="blog-post">
+		<h2><?php echo $post->title; ?></h2>
+		<div class="post-text">
+			<?php echo $post->text; ?> <!-- @todo This should be an excerpt and not the full text! -->
+			<a href="<?php echo $this->url('blog/view', $post->getCleanArrayCopy()); ?>">
+				Read More
+			</a>
+		</div>
+		<div class="byline">
+			<p class="author">By <span>Username</span></p>
+			<!-- <p class="date">On <span>Month DD, YYYY</span></p> -->
+		</div>
+	</article>
+<?php endforeach ?> 

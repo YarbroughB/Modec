@@ -49,4 +49,9 @@ abstract class AbstractActionController extends ZendAbstractActionController
 
 		return $view;
 	}
+	
+	protected function pageNotFound()
+	{
+		$this->response->setStatusCode(404);
+	}
 }

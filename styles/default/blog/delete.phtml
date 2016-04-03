@@ -1,0 +1,28 @@
+<?php
+	// Add the head title
+	$this->headTitle('Blog');
+
+	// Add the page css
+	$this->headLink()->prependStylesheet($this->basePath('css/blog.css'));
+
+	// Customize the form
+	$this->form->setAttribute('class', 'form-horizontal');
+	
+	$this->form->get('accept')->setAttribute('class', 'btn btn-danger btn-block');
+	$this->form->get('decline')->setAttribute('class', 'btn btn-primary btn-block');
+?>
+
+<?php echo $this->form()->openTag($this->form); ?>
+	<h1>Confirm Deletion</h1>
+	<div class="form-group">
+		<span class="help-block">
+			Are you sure that you want to delete "<?php echo $this->post->title; ?>".
+		</span>
+		<div class="col-sm-offset-2 col-sm-4">
+			<?php echo $this->formSubmit($this->form->get('accept')); ?>
+		</div>
+		<div class="col-sm-4">
+			<?php echo $this->formSubmit($this->form->get('decline')); ?>
+		</div>
+	</div>
+<?php echo $this->form()->closeTag(); ?>

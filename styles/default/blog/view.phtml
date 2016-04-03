@@ -1,0 +1,28 @@
+<?php
+	// Add the head title
+	$this->headTitle('Blog');
+
+	// Add the page css
+	$this->headLink()->prependStylesheet($this->basePath('css/blog.css'));
+?>
+
+<article id="blog-post-<?php echo $this->post->id; ?>" class="blog-post">
+	<h1><?php echo $this->post->title; ?></h1>
+	<div class="post-text">
+		<?php echo $this->post->text; ?>
+	</div>
+	<div class="byline">
+		<p class="author">By <span>Username</span></p>
+		<!-- <p class="date">On <span>Month DD, YYYY</span></p> -->
+	</div>
+	<?php if (true || $this->hasPermission('blog', 'edit') || $this->hasPermission('blog', 'delete')): ?> <!-- @todo Make the permission helper and fix this! -->
+		<ul class="options">
+			<?php if (true || $this->hasPermission('blog', 'edit')): ?> <!-- @todo Make the permission helper and fix this! -->
+				<li><a href="<?php echo $this->url('blog/edit', $post->getCleanArrayCopy()); ?>">Edit Post</a></li>
+			<?php endif; ?>
+			<?php if (true || $this->hasPermission('blog', 'delete')): ?> <!-- @todo Make the permission helper and fix this! -->
+				<li><a href="<?php echo $this->url('blog/delete', $post->getCleanArrayCopy()); ?>">Delete Post</a></li>
+			<?php endif; ?>
+		</ul>
+	<?php endif; ?>
+</article>

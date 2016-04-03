@@ -56,9 +56,26 @@ abstract class AbstractModel
 		return $return;
 	}
 
+	public function getCleanArrayCopy()
+	{
+		$return = array();
+		
+		foreach ($this as $key => $value) {
+			if (method_exists($this, 'getClean' . $key)) {
+				$value = $this->{'getClean' . $key}();
+			} else {
+				$value = $this->__get($key);
+			}
+
+			$return[$key] = $value;
+		}
+
+		return $return;
+	}
+
 	public function __get($name)
 	{
-		// Check for a custom getter and use it		
+		// Check for a custom getter and use it
 		if (method_exists($this, 'get' . $name)) {
 			return $this->{'get' . $name}();
 		}
@@ -79,13 +96,23 @@ abstract class AbstractModel
 		$this->$name = $value;
 	}
 
-    function __isset($name)
+    public function __isset($name)
 	{
         return isset($this->$name);
     }
 
-    function __unset($name)
+    public function __unset($name)
 	{
         unset($this->$name);
     }
+	
+	protected function cleanString($string)
+	{
+		//! @todo Add translations for special characters (like those with accents). 
+		$clean = preg_replace("/[^a-zA-Z0-9]/", '-', $string);
+		$clean = preg_replace("/-{2,}/", '-', $clean);
+		$clean = strtolower(trim($clean, '-'));
+
+		return $clean;
+	}
 }
