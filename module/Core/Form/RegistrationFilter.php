@@ -21,7 +21,7 @@ class RegistrationFilter extends InputFilter
 					'name'    => 'StringLength',
 					'options' => array(
 						'encoding' => 'UTF-8',
-						'max'	  => 50,
+						'max'	   => 50,
 					),
 				),
 				array(
@@ -96,7 +96,7 @@ class RegistrationFilter extends InputFilter
 					'name'    => 'StringLength',
 					'options' => array(
 						'encoding' => 'UTF-8',
-						'min'	  => 6
+						'min'	   => 6
 					),
 				),
 			),
@@ -115,7 +115,7 @@ class RegistrationFilter extends InputFilter
 					'name'    => 'StringLength',
 					'options' => array(
 						'encoding' => 'UTF-8',
-						'min'	  => 6,
+						'min'	   => 6,
 					),
 				),
 				array(

@@ -6,9 +6,9 @@ use Zend\Form\Form;
 
 class RegistrationForm extends Form
 {
-	public function __construct($name = null)
+	public function __construct($name = null, $options = array())
 	{
-		parent::__construct('registration');
+		parent::__construct($name, $options);
 
 		// Set the form method
 		$this->setAttribute('method', 'post');

@@ -75,10 +75,8 @@ class UsersTable extends AbstractTable
 
 	public function updateUser(User $user)
 	{
-		$data = $user->getArrayCopy();
-
 		return $this->update(
-			$data,
+			$user->getArrayCopy(),
 			array('userid' => (int) $user->userid)
 		);
 	}
