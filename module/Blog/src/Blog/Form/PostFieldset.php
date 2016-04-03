@@ -28,6 +28,14 @@
          ));
 		 
 		 $this->add(array(
+             'type' => 'date',
+             'name' => 'dateformat',
+             'options' => array(
+                 'label' => 'Post Date'
+             )
+         ));
+		 
+		 $this->add(array(
              'type' => 'text',
              'name' => 'posttitle',
              'options' => array(

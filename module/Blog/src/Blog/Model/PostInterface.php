@@ -7,4 +7,5 @@
      public function getPosttitle();
      public function getPosttext();
 	 public function getUserid(); 
+	 public function getDateformat(); 
  }
