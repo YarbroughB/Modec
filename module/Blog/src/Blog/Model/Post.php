@@ -7,6 +7,7 @@
 	 protected $userid; 
      protected $posttitle;
      protected $posttext;
+	 protected $dateformat; 
      public function getPostid()
      {
          return $this->postid;
@@ -38,5 +39,13 @@
      public function setPosttext($posttext)
      {
          $this->posttext = $posttext;
+     }
+	 public function getDateformat()
+     {
+         return $this->dateformat;
+     }
+     public function setDateformat($dateformat)
+     {
+         $this->dateformat = $dateformat;
      }
  }
