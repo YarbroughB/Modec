@@ -24,9 +24,10 @@
 			</a>
 		</div>
 		<div class="byline">
-			<p class="author">By <span>Username</span></p>
-			<!-- <p class="date">On <span>Month DD, YYYY</span></p> -->
+			Posted by <span class="author"><?php echo $this->post->username; ?></span> on <span class="date"><?php echo $this->dateFormat(
+				$post->date, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
+			); ?></span>
 		</div>
 	</article>
 	<hr /> <!-- @todo This HR should be done as a bottom border on all but the last child elements of the article itself. -->
-<?php endforeach ?> 
+<?php endforeach ?>

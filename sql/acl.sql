@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `acl_resources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `acl_rules` (
-	`id` int(11) NOT NULL,
+	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`usergroup` tinyint(3) unsigned NOT NULL,
 	`resource` varchar(100) NOT NULL,
 	`privilege` varchar(25) DEFAULT NULL,

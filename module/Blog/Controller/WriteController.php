@@ -42,6 +42,7 @@ class WriteController extends AbstractActionController
 
 				$data->id     = null;
 				$data->userid = $user->userid;
+				$data->date   = time();
 
 				// Add the post to the database
 				$postsTable = $this->getServiceLocator()->get('BlogPostsTable');
@@ -112,6 +113,10 @@ class WriteController extends AbstractActionController
 
 				$data->id     = $post->id;
 				$data->userid = $post->userid;
+				$data->date   = $post->date;
+
+				$data->editUserid = $user->userid;
+				$data->editDate   = time();
 
 				// Add the post to the database
 				$postsTable = $this->getServiceLocator()->get('BlogPostsTable');

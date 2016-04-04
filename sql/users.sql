@@ -1,6 +1,6 @@
 
 CREATE TABLE IF NOT EXISTS `usergroups` (
-	`id` tinyint(3) unsigned NOT NULL,
+	`id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
 	`title` varchar(50) NOT NULL,
 	`type` enum('GUEST','REGULAR','ADMIN','BANNED') NOT NULL DEFAULT 'REGULAR',
 	PRIMARY KEY (`id`)
@@ -13,7 +13,7 @@ INSERT INTO `usergroups` (`id`, `title`, `type`) VALUES
 	(4, 'Banned Users', 'BANNED');
 
 CREATE TABLE IF NOT EXISTS `users` (
-	`userid` int(10) unsigned NOT NULL,
+	`userid` int(11) unsigned NOT NULL,
 	`username` varchar(50) NOT NULL,
 	`email` varchar(150) NOT NULL,
 	`password` char(32) NOT NULL,

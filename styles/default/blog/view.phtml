@@ -12,9 +12,17 @@
 		<?php echo $this->post->text; ?>
 	</div>
 	<div class="byline">
-		<p class="author">By <span>Username</span></p>
-		<!-- <p class="date">On <span>Month DD, YYYY</span></p> -->
+		Posted by <span class="author"><?php echo $this->post->username; ?></span> on <span class="date"><?php echo $this->dateFormat(
+			$post->date, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
+		); ?></span>
 	</div>
+	<?php if (isset($post->editDate)): ?>
+		<div class="editline">
+			Last edited by <span class="author"><?php echo $this->post->editUsername; ?></span> on <span class="date"><?php echo $this->dateFormat(
+				$post->editDate, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
+			); ?></span>
+		</div>
+	<?php endif; ?>
 	<?php if (true || $this->hasPermission('blog', 'edit') || $this->hasPermission('blog', 'delete')): ?> <!-- @todo Make the permission helper and fix this! -->
 		<ul class="options">
 			<?php if (true || $this->hasPermission('blog', 'edit')): ?> <!-- @todo Make the permission helper and fix this! -->

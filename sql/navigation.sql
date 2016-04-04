@@ -1,6 +1,6 @@
 
 CREATE TABLE IF NOT EXISTS `navigation` (
-	`id` int(10) unsigned NOT NULL,
+	`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	`label` varchar(50) NOT NULL,
 	`route` varchar(100) DEFAULT NULL,
 	`params` varchar(250) DEFAULT NULL,
@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS `navigation` (
 	`resource` varchar(100) DEFAULT NULL,
 	`privilege` varchar(25) DEFAULT NULL,
 	`menu` varchar(25) NOT NULL,
-	`order` int(10) unsigned NOT NULL,
-	`parent` int(10) unsigned DEFAULT NULL,
+	`order` int(11) unsigned NOT NULL,
+	`parent` int(11) unsigned DEFAULT NULL,
 	`module` varchar(25) NOT NULL DEFAULT 'Core',
 	`active` bit(1) NOT NULL DEFAULT b'1',
 	PRIMARY KEY (`id`)
