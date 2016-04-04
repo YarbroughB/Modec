@@ -6,6 +6,8 @@ use Zend\Authentication\AuthenticationService;
 use Zend\Mvc\MvcEvent;
 use Zend\Permissions\Acl\Acl;
 use Zend\View\Helper\Navigation;
+use Zend\View\ViewEvent;
+use Zend\View\Renderer\PhpRenderer;
 
 use Core\Model\User;
 
@@ -27,6 +29,19 @@ class Module
 
 		// Initialize the ACL	
 		$this->initAcl($event, $user);
+		
+		// Configure the Format View Helpers
+		$events = $event->getApplication()->getEventManager();
+		$sharedEvents = $events->getSharedManager();
+
+		$sharedEvents->attach('Zend\View\View', ViewEvent::EVENT_RENDERER_POST, function($event) {
+			$renderer = $event->getRenderer();
+
+			if ($renderer instanceof PhpRenderer) {
+				$renderer->plugin("currencyFormat")->setCurrencyCode("USD")->setLocale('en_US');
+				$renderer->plugin("dateFormat")->setTimezone("America/Chicago")->setLocale("en_US");
+			}
+		});
 	}
 
 	public function getConfig()
