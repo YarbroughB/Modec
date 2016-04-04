@@ -7,3 +7,6 @@ temp/
 
 # Library Files
 library/
+
+# Other Ignores
+todo.txt
