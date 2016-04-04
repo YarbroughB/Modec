@@ -52,5 +52,5 @@ highlight a random gallery).
  * [ ] Content Management System
 	* [x] Stupidly Simple Version
 	* [ ] Advanced Version
- * [ ] Blog
+ * [x] Blog
  * [ ] Photo Gallery
