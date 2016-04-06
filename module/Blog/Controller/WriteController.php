@@ -17,9 +17,10 @@ class WriteController extends AbstractActionController
 		// Check if the user has permission to this action
 		$user = $this->identity();
 
-		/*if (!$user || !$this->hasPermission('blog', 'add')) {
+		//if (!$user || !$this->hasPermission('blog', 'add')) {
+		if (!$user) {
 			return $this->permissionDenied();
-		}*/ //! @todo Add this!
+		} //! @todo Add this!
 
 		// Create the form		
 		$form = new BlogPostForm();
