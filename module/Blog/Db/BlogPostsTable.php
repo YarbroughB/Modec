@@ -62,6 +62,8 @@ class BlogPostsTable extends AbstractTable
 
 		unset($data['id']);
 		unset($data['username']);
+		unset($data['editDate']);
+		unset($data['editUserid']);
 		unset($data['editUsername']);
 		
 		return $this->insert($data);
@@ -70,8 +72,10 @@ class BlogPostsTable extends AbstractTable
 	public function updatePost(BlogPost $post)
 	{
 		$data = $post->getArrayCopy();
+
 		unset($data['username']);
 		unset($data['editUsername']);
+
 		return $this->update(
 			$data,
 			array('id' => (int) $post->id)
