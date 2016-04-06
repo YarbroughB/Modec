@@ -18,13 +18,14 @@
 	<article id="blog-post-<?php echo $post->id; ?>" class="blog-post">
 		<h2><?php echo $post->title; ?></h2>
 		<div class="post-text">
-			<?php echo $post->text; ?> <!-- @todo This should be an excerpt and not the full text! -->
+			<?php echo substr($post->text,0,500); ?>
 			<a href="<?php echo $this->url('blog/view', $post->getCleanArrayCopy()); ?>">
 				Read More
 			</a>
 		</div>
 		<div class="byline">
-			Posted by <span class="author"><?php echo $this->post->username; ?></span> on <span class="date"><?php echo $this->dateFormat(
+			Posted by <span class="author"><?php echo $post->username; ?></span>
+			on <span class="date"><?php echo $this->dateFormat(
 				$post->date, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
 			); ?></span>
 		</div>

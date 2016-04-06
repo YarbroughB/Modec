@@ -61,14 +61,19 @@ class BlogPostsTable extends AbstractTable
 		$data = $post->getArrayCopy();
 
 		unset($data['id']);
+		unset($data['username']);
+		unset($data['editUsername']);
 		
 		return $this->insert($data);
 	}
 
 	public function updatePost(BlogPost $post)
 	{
+		$data = $post->getArrayCopy();
+		unset($data['username']);
+		unset($data['editUsername']);
 		return $this->update(
-			$post->getArrayCopy(),
+			$data,
 			array('id' => (int) $post->id)
 		);
 	}

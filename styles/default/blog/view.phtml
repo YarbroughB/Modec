@@ -12,13 +12,15 @@
 		<?php echo $this->post->text; ?>
 	</div>
 	<div class="byline">
-		Posted by <span class="author"><?php echo $this->post->username; ?></span> on <span class="date"><?php echo $this->dateFormat(
+		Posted by <span class="author"><?php echo $this->post->username; ?></span>
+		on <span class="date"><?php echo $this->dateFormat(
 			$post->date, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
 		); ?></span>
 	</div>
 	<?php if (isset($post->editDate)): ?>
 		<div class="editline">
-			Last edited by <span class="author"><?php echo $this->post->editUsername; ?></span> on <span class="date"><?php echo $this->dateFormat(
+			Last edited by <span class="author"><?php echo $this->post->editUsername; ?></span>
+			on <span class="date"><?php echo $this->dateFormat(
 				$post->editDate, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
 			); ?></span>
 		</div>
