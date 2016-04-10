@@ -4,7 +4,8 @@ return array(
 	'modules' => array(
 		'Core',
 		'Cms', 
-		'Blog'
+		'Blog',
+		'Gallery'
 	),
 	'module_listener_options' => array(
 		'module_paths' => array(

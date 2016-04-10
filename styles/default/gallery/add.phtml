@@ -1,0 +1,18 @@
+<?php
+ //Gallery: add photo page
+ $title = 'Add new photo';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <?php
+ $form->setAttribute('action', $this->url('gallery', array('action' => 'add')));
+ $form->prepare();
+
+ echo $this->form()->openTag($form);
+ echo $this->formHidden($form->get('photoId'));
+ echo $this->formHidden($form->get('userid'));
+ echo $this->formHidden($form->get('timestamp'));
+ echo $this->formRow($form->get('description'));
+ echo $this->formRow($form->get('location'));;
+ echo $this->formSubmit($form->get('submit'));
+ echo $this->form()->closeTag();

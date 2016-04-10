@@ -1,0 +1,34 @@
+<?php
+ //Gallery: index page
+ $title = 'My Gallery';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('gallery', array('action'=>'add'));?>">Add new photo</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>userid</th>
+     <th>timestamp</th>
+     <th>description</th>
+		 <th>location</th>
+		 <th>photoId</th>
+ </tr>
+ <?php foreach ($gallerys as $gallery) : ?>
+ <tr>
+     <td><?php echo $this->escapeHtml($gallery->userid);?></td>
+     <td><?php echo $this->escapeHtml($gallery->timestamp);?></td>
+		 <td><?php echo $this->escapeHtml($gallery->description);?></td>
+		 <td><?php echo $this->escapeHtml($gallery->location);?></td>
+		 <td><?php echo $this->escapeHtml($gallery->photoId);?></td>
+     <td>
+         <a href="<?php echo $this->url('gallery',
+             array('action'=>'edit', 'id' => $gallery->photoId));?>">Edit</a>
+         <a href="<?php echo $this->url('gallery',
+             array('action'=>'delete', 'id' => $gallery->photoId));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>
