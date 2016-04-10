@@ -67,7 +67,7 @@ class GalleryController extends AbstractActionController
 				}
 				//Stores the photo on the server
 				$adapter = new \Zend\File\Transfer\Adapter\Http();
-				$adapter->setDestination('public\img\gallery');
+				$adapter->setDestination('public/img/gallery');
 				$adapter->addFilter('File\Rename', array('target' => $adapter->getDestination().
 				                    DIRECTORY_SEPARATOR . $newName.'.'.$extension,
 														'overwrite' => true));
