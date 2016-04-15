@@ -1,4 +1,5 @@
 <?php
+
 namespace Gallery\Form;
 
 use Zend\InputFilter\InputFilter;

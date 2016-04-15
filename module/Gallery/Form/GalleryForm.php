@@ -1,4 +1,5 @@
 <?php
+
 namespace Gallery\Form;
 
 use Zend\Form\Form;
@@ -19,7 +20,6 @@ class GalleryForm extends Form
 			'type' => 'Hidden',
 		));
 
-		
 		// Add the username field
 		$this->add(array(
 			'name' => 'userid',
@@ -33,29 +33,29 @@ class GalleryForm extends Form
 
 		// Add the description
 		$this->add(array(
-			'name' => 'description',
+			'name'       => 'description',
 			'attributes' => array(
-				'type'  => 'text',
+				'type'        => 'text',
 				'placeholder' => 'Description',
 			),
-			'options' => array(
+			'options'    => array(
 				'label' => 'Description',
 			),
 		));
 		
 	  $this->add(array(
-			'name' => 'location',
+			'name'       => 'location',
 			'attributes' => array(
-				'type'  => 'file',
+				'type' => 'file',
 			),
-			'options' => array(
+			'options'    => array(
 				'label' => 'Location',
 			),
 		));
 	
 		// Add the submit button
 		$this->add(array(
-			'name' => 'submit',
+			'name'       => 'submit',
 			'attributes' => array(
 				'type'  => 'submit',
 				'value' => 'gallery',

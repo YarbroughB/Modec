@@ -9,7 +9,6 @@ use Zend\Db\Sql\Expression;
 use Zend\Db\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 
-
 use Core\Db\AbstractTable;
 
 use Gallery\Model\Gallery;
@@ -24,31 +23,35 @@ class GalleryTable extends AbstractTable
 	//Gets entire table
 	public function fetchAll()
 	{
-		$resultSet = $this->tableGateway->select();
-    return $resultSet;
+		return $this->tableGateway->select();
 	}
-  
+
 	//gets photo from gallery
 	public function getGallery($photoId)
 	{
 		$photoId  = (int) $photoId;
 		$rowset = $this->tableGateway->select(array('photoId' => $photoId));
+
 		$row = $rowset->current();
+
 		if (!$row) {
 			throw new \Exception("Could not find row $photoId");
 		}
-    return $row;
+
+		return $row;
 	}
   
 	//saves photo into gallery
 	public function savePhoto(Gallery $gallery)
 	{
 		$data = array(
-		'userid' => $gallery->userid,
-		'description'  => $gallery->description,
-		'location' => $gallery->location,
+			'userid' => $gallery->userid,
+			'description'  => $gallery->description,
+			'location' => $gallery->location,
 		);
+
 		$id = (int) $gallery->photoId;
+
 		if ($id == 0) {
 			$this->tableGateway->insert($data);
 		} else {
@@ -66,15 +69,18 @@ class GalleryTable extends AbstractTable
 		$this->tableGateway->delete(array('photoId' => (int) $photoId));
 	}
 	
-  //Currently gets the name of a new photo to be stored on server
+	//Currently gets the name of a new photo to be stored on server
 	public function getPhotoId()
 	{
 		$rowset = $this->tableGateway->select();
 		$size = $rowset->count();
-		for($i = 0; $i <$size; $i++) {
+
+		for ($i = 0; $i <$size; $i++) {
 			$rowset->next();
 		}
+
 		$row = $rowset->current();
+
 		return $row->photoId + 1;
 	}
 }

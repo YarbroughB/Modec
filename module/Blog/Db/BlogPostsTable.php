@@ -62,8 +62,6 @@ class BlogPostsTable extends AbstractTable
 
 		unset($data['id']);
 		unset($data['username']);
-		unset($data['editDate']);
-		unset($data['editUserid']);
 		unset($data['editUsername']);
 		
 		return $this->insert($data);

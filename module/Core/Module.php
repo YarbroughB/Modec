@@ -38,7 +38,7 @@ class Module
 			$renderer = $event->getRenderer();
 
 			if ($renderer instanceof PhpRenderer) {
-				$renderer->plugin("currencyFormat")->setCurrencyCode("USD")->setLocale('en_US');
+				//$renderer->plugin("currencyFormat")->setCurrencyCode("USD")->setLocale('en_US');
 				$renderer->plugin("dateFormat")->setTimezone("America/Chicago")->setLocale("en_US");
 			}
 		});

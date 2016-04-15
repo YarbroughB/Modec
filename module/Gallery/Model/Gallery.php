@@ -11,5 +11,4 @@ class Gallery extends AbstractModel
 	protected $timestamp;
 	protected $description;
 	protected $location;
-	
 }

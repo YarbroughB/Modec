@@ -4,8 +4,9 @@ namespace Gallery\Db;
 
 use Zend\Db\TableGateway\TableGateway;
 
-use Gallery\Model\Gallery;
 use Core\Db\AbstractTableFactory;
+
+use Gallery\Model\Gallery;
 
 class GalleryTableFactory extends AbstractTableFactory
 {

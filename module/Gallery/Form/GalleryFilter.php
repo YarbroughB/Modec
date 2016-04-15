@@ -1,4 +1,5 @@
 <?php
+
 namespace Gallery\Form;
 
 use Zend\InputFilter\InputFilter;
@@ -20,18 +21,20 @@ class GalleryFilter extends InputFilter
 				array(
 					'name'    => 'StringLength',
 					'options' => array(
-						'max'	   => 200,
+						'max' => 200,
 					),
 				),
 			)
 		));
-		
+
 		// Filter the location
 		$this->add(array(
-			'name'     => 'location',
-			'required' => true,
-			'validators'  => array(
-				array('name' => 'File\isImage'),
+			'name'       => 'location',
+			'required'   => true,
+			'validators' => array(
+				array(
+					'name' => 'File\isImage'
+				),
 				array(
 					'name' => 'File\Extension',
 					'options' => array('extension' => 'jpeg, jpg, png'),
