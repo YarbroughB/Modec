@@ -16,7 +16,7 @@ class BlogPost extends AbstractModel
 	protected $editUserid;
 	protected $editUsername;
 	
-	public function maxBriefLength()
+	static public function maxBriefLength()
 	{
 		//! @todo This value should come from a setting!
 		return 500;
