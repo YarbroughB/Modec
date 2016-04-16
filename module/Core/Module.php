@@ -10,6 +10,7 @@ use Zend\View\ViewEvent;
 use Zend\View\Renderer\PhpRenderer;
 
 use Core\Model\User;
+use Core\View\Helper\HasPermission;
 
 class Module
 {
@@ -127,10 +128,8 @@ class Module
 
 		// Set the ACL in the view model
 		$event->getViewModel()->acl = $acl;
-		
-		// Setup the navigation helper
-		Navigation::setDefaultAcl($acl);
 
+		// Find the user's role
 		if (!$user) {
 			//$role = $usergroupsTable->getGuestGroupId();
 			$role = '1'; // Guest
@@ -139,6 +138,12 @@ class Module
 			$role = $user->usergroup->id;
 		}
 		
+		// Setup the permission helper
+		HasPermission::setAcl($acl);
+		HasPermission::setRole($role);
+		
+		// Setup the navigation helper
+		Navigation::setDefaultAcl($acl);
 		Navigation::setDefaultRole($role);
 	}
 }

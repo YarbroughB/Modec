@@ -17,10 +17,9 @@ class WriteController extends AbstractActionController
 		// Check if the user has permission to this action
 		$user = $this->identity();
 
-		//if (!$user || !$this->hasPermission('blog', 'add')) {
-		if (!$user) {
+		if (!$user || !$this->hasPermission('blog', 'add')) {
 			return $this->permissionDenied();
-		} //! @todo Add this!
+		}
 
 		// Create the form		
 		$form = new BlogPostForm();
@@ -72,9 +71,9 @@ class WriteController extends AbstractActionController
 		// Check if the user has permission to this action
 		$user = $this->identity();
 
-		/*if (!$user || !$this->hasPermission('blog', 'edit')) {
+		if (!$user || !$this->hasPermission('blog', 'edit')) {
 			return $this->permissionDenied();
-		}*/ //! @todo Add this!
+		}
 		
 		// Get the post id from the request
 		$postid = $this->params('id');
@@ -89,9 +88,9 @@ class WriteController extends AbstractActionController
 		}
 
 		// Check that they are editing their own post or have permission to edit other's posts
-		if ($post->userid != $user->userid || !$this->hasPermission('blog', 'edit-others')) {
+		if ($post->userid != $user->userid && !$this->hasPermission('blog', 'edit-others')) {
 			return $this->permissionDenied();
-		} //! @todo Add this!
+		}
 
 		// Create the form
 		$form = new BlogPostForm();

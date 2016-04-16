@@ -17,10 +17,9 @@ class WriteController extends AbstractActionController
 		// Check if the user has permission to this action
 		$user = $this->identity();
 
-		//if (!$user || !$this->hasPermission('gallery', 'add')) {
-		if (!$user) {
+		if (!$user || !$this->hasPermission('gallery', 'add')) {
 			return $this->permissionDenied();
-		} //! @todo Add this!
+		}
 
 		// Create the form		
 		$form = new GalleryImageForm();
@@ -108,9 +107,9 @@ class WriteController extends AbstractActionController
 		// Check if the user has permission to this action
 		$user = $this->identity();
 
-		/*if (!$user || !$this->hasPermission('gallery', 'edit')) {
+		if (!$user || !$this->hasPermission('gallery', 'edit')) {
 			return $this->permissionDenied();
-		}*/ //! @todo Add this!
+		}
 		
 		// Get the image id from the request
 		$imageid = $this->params('id');
@@ -125,9 +124,9 @@ class WriteController extends AbstractActionController
 		}
 
 		// Check that they are editing their own image or have permission to edit other's images
-		if ($image->userid != $user->userid) { // || !$this->hasPermission('gallery', 'edit-others')) {
+		if ($image->userid != $user->userid && !$this->hasPermission('gallery', 'edit-others')) {
 			return $this->permissionDenied();
-		} //! @todo Add this!
+		}
 
 		// Create the form
 		$form = new GalleryImageForm();

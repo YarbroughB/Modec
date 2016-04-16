@@ -10,7 +10,7 @@
 
 <!-- @todo Handle when there are no posts to display! -->
 
-<?php if (true || $this->hasPermission('blog', 'add')): ?> <!-- @todo Make the permission helper and fix this! -->
+<?php if ($this->hasPermission('blog', 'add')): ?>
 	<a href="<?php echo $this->url('blog/add'); ?>">Add New Post</a>
 <?php endif; ?>
 

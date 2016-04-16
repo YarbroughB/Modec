@@ -16,9 +16,9 @@ class ViewController extends AbstractActionController
 	public function indexAction()
 	{
 		// Check if the user has permission to this action
-		/*if (!$this->hasPermission('gallery', 'view')) {
+		if (!$this->hasPermission('gallery', 'view')) {
 			return $this->permissionDenied();
-		}*/ //! @todo Add this!
+		}
 		
 		// Get the posts from the database
 		$imagesTable = $this->getServiceLocator()->get('GalleryImagesTable');
@@ -39,9 +39,9 @@ class ViewController extends AbstractActionController
 	public function viewAction()
 	{
 		// Check if the user has permission to this action
-		/*if (!$this->hasPermission('gallery', 'view')) {
+		if (!$this->hasPermission('gallery', 'view')) {
 			return $this->permissionDenied();
-		}*/ //! @todo Add this!
+		}
 		
 		// Get the image id from the request
 		$imageid = $this->params('id');

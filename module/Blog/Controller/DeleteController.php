@@ -14,9 +14,9 @@ class DeleteController extends AbstractActionController
 		// Check if the user has permission to this action
 		$user = $this->identity();
 
-		/*if (!$user || !$this->hasPermission('blog', 'delete')) {
+		if (!$user || !$this->hasPermission('blog', 'delete')) {
 			return $this->permissionDenied();
-		}*/ //! @todo Add this!
+		}
 		
 		// Get the post id from the request
 		$postid = $this->params('id');
@@ -31,9 +31,9 @@ class DeleteController extends AbstractActionController
 		}
 
 		// Check that they are deleting their own post or have permission to delete other's posts
-		if ($post->userid != $user->userid || !$this->hasPermission('blog', 'delete-others')) {
+		if ($post->userid != $user->userid && !$this->hasPermission('blog', 'delete-others')) {
 			return $this->permissionDenied();
-		} //! @todo Add this!
+		}
 
 		// Create the form		
 		$form = new DeletionConfirmationForm();

@@ -14,9 +14,9 @@ class DeleteController extends AbstractActionController
 		// Check if the user has permission to this action
 		$user = $this->identity();
 
-		/*if (!$user || !$this->hasPermission('gallery', 'delete')) {
+		if (!$user || !$this->hasPermission('gallery', 'delete')) {
 			return $this->permissionDenied();
-		}*/ //! @todo Add this!
+		}
 		
 		// Get the image id from the request
 		$imageid = $this->params('id');
@@ -31,9 +31,9 @@ class DeleteController extends AbstractActionController
 		}
 
 		// Check that they are deleting their own image or have permission to delete other's images
-		if ($image->userid != $user->userid) { // || !$this->hasPermission('gallery', 'delete-others')) {
+		if ($image->userid != $user->userid && !$this->hasPermission('gallery', 'delete-others')) {
 			return $this->permissionDenied();
-		} //! @todo Add this!
+		}
 
 		// Create the form		
 		$form = new DeletionConfirmationForm();

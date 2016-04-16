@@ -32,13 +32,25 @@
 	</div>
 <?php endif; ?>
 
-<?php if (true || $this->hasPermission('gallery', 'edit') || $this->hasPermission('gallery', 'delete')): ?> <!-- @todo Make the permission helper and fix this! -->
-	<ul class="options">
-		<?php if (true || $this->hasPermission('gallery', 'edit')): ?> <!-- @todo Make the permission helper and fix this! -->
-			<li><a href="<?php echo $this->url('gallery/edit', $image->getCleanArrayCopy()); ?>">Edit image</a></li>
-		<?php endif; ?>
-		<?php if (true || $this->hasPermission('gallery', 'delete')): ?> <!-- @todo Make the permission helper and fix this! -->
-			<li><a href="<?php echo $this->url('gallery/delete', $image->getCleanArrayCopy()); ?>">Delete image</a></li>
-		<?php endif; ?>
-	</ul>
+<?php if ($user = $this->identity()): ?>
+	<?php
+		$canEdit = $this->hasPermission('gallery', 'edit') && (
+			$image->userid == $user->userid || $this->hasPermission('gallery', 'edit-others')
+		);
+
+		$canDelete = $this->hasPermission('gallery', 'delete') && (
+			$image->userid == $user->userid || $this->hasPermission('gallery', 'delete-others')
+		);
+	?>
+
+	<?php if ($canEdit || $canDelete): ?>
+		<ul class="options">
+			<?php if ($canEdit): ?>
+				<li><a href="<?php echo $this->url('gallery/edit', $image->getCleanArrayCopy()); ?>">Edit Image</a></li>
+			<?php endif; ?>
+			<?php if ($canDelete): ?>
+				<li><a href="<?php echo $this->url('gallery/delete', $image->getCleanArrayCopy()); ?>">Delete Image</a></li>
+			<?php endif; ?>
+		</ul>
+	<?php endif; ?>
 <?php endif; ?>

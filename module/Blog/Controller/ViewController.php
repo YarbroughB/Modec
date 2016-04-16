@@ -11,9 +11,9 @@ class ViewController extends AbstractActionController
 	public function indexAction()
 	{
 		// Check if the user has permission to this action
-		/*if (!$this->hasPermission('blog', 'view')) {
+		if (!$this->hasPermission('blog', 'view')) {
 			return $this->permissionDenied();
-		}*/ //! @todo Add this!
+		}
 		
 		// Get the posts from the database
 		$postsTable = $this->getServiceLocator()->get('BlogPostsTable');
@@ -34,9 +34,9 @@ class ViewController extends AbstractActionController
 	public function viewAction()
 	{
 		// Check if the user has permission to this action
-		/*if (!$this->hasPermission('blog', 'view')) {
+		if (!$this->hasPermission('blog', 'view')) {
 			return $this->permissionDenied();
-		}*/ //! @todo Add this!
+		}
 		
 		// Get the post id from the request
 		$postid = $this->params('id');

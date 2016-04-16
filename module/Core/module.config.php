@@ -145,6 +145,7 @@ return array(
 	'view_helpers' => array(
 		'invokables'=> array(
 			'FormHasErrors' => 'Core\Form\View\Helper\FormHasErrors',
+			'HasPermission' => 'Core\View\Helper\HasPermission',
 		)
 	),
     'service_manager' => array(

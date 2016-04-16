@@ -8,7 +8,7 @@
 
 <h1>Photo Gallery</h1>
 
-<?php if (true || $this->hasPermission('gallery', 'add')): ?> <!-- @todo Make the permission helper and fix this! -->
+<?php if ($this->hasPermission('gallery', 'add')): ?>
 	<a href="<?php echo $this->url('gallery/add'); ?>">Add New Image</a>
 <?php endif; ?>
 

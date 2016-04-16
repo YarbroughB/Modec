@@ -10,13 +10,15 @@
 	<h1><?php echo $this->post->title; ?></h1>
 	<div class="post-text">
 		<?php echo $this->post->text; ?>
-	</div> <br/>
+	</div>
+	
 	<div class="byline">
 		Posted by <span class="author"><?php echo $this->post->username; ?></span>
 		on <span class="date"><?php echo $this->dateFormat(
 			$post->date, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
 		); ?></span>
 	</div>
+	
 	<?php if (isset($post->editDate)): ?>
 		<div class="editline">
 			Last edited by <span class="author"><?php echo $this->post->editUsername; ?></span>
@@ -25,14 +27,27 @@
 			); ?></span>
 		</div>
 	<?php endif; ?>
-	<?php if (true || $this->hasPermission('blog', 'edit') || $this->hasPermission('blog', 'delete')): ?> <!-- @todo Make the permission helper and fix this! -->
-		<ul class="options">
-			<?php if (true || $this->hasPermission('blog', 'edit')): ?> <!-- @todo Make the permission helper and fix this! -->
-				<li><a href="<?php echo $this->url('blog/edit', $post->getCleanArrayCopy()); ?>">Edit Post</a></li>
-			<?php endif; ?>
-			<?php if (true || $this->hasPermission('blog', 'delete')): ?> <!-- @todo Make the permission helper and fix this! -->
-				<li><a href="<?php echo $this->url('blog/delete', $post->getCleanArrayCopy()); ?>">Delete Post</a></li>
-			<?php endif; ?>
-		</ul>
+
+	<?php if ($user = $this->identity()): ?>
+		<?php
+			$canEdit = $this->hasPermission('blog', 'edit') && (
+				$post->userid == $user->userid || $this->hasPermission('blog', 'edit-others')
+			);
+
+			$canDelete = $this->hasPermission('blog', 'delete') && (
+				$post->userid == $user->userid || $this->hasPermission('blog', 'delete-others')
+			);
+		?>
+
+		<?php if ($canEdit || $canDelete): ?>
+			<ul class="options">
+				<?php if ($canEdit): ?>
+					<li><a href="<?php echo $this->url('blog/edit', $post->getCleanArrayCopy()); ?>">Edit Post</a></li>
+				<?php endif; ?>
+				<?php if ($canDelete): ?>
+					<li><a href="<?php echo $this->url('blog/delete', $post->getCleanArrayCopy()); ?>">Delete Post</a></li>
+				<?php endif; ?>
+			</ul>
+		<?php endif; ?>
 	<?php endif; ?>
 </article>
