@@ -24,7 +24,7 @@ class Module
 	{
 		return array(
 			'factories' => array(
-				'GalleryTable' => 'Gallery\Db\GalleryTableFactory',
+				'GalleryImagesTable' => 'Gallery\Db\GalleryImagesTableFactory',
 			),
 		);
 	}

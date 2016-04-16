@@ -1,22 +1,31 @@
 <?php
- //Gallery: delete photo page
- $title = 'Delete Photo';
- $this->headTitle($title);
- ?>
- <h1><?php echo $this->escapeHtml($title); ?></h1>
+	// Add the head title
+	$this->headTitle('Photo Gallery');
 
- <p>Are you sure that you want to delete this photo?
- </p>
- <?php
- $url = $this->url('gallery', array(
-     'action' => 'delete',
-     'id'     => $this->id,
- ));
- ?>
- <form action="<?php echo $url; ?>" method="post">
- <div>
-     <input type="hidden" name="photoId" value="<?php echo (int) $gallery->photoId; ?>" />
-     <input type="submit" name="del" value="Yes" />
-     <input type="submit" name="del" value="No" />
- </div>
- </form>
+	// Add the page css
+	$this->headLink()->prependStylesheet($this->basePath('css/gallery.css'));
+
+	// Customize the form
+	$this->form->setAttribute('class', 'form-horizontal');
+	
+	$this->form->get('accept')->setAttribute('class', 'btn btn-danger btn-block');
+	$this->form->get('decline')->setAttribute('class', 'btn btn-primary btn-block');
+?>
+
+<?php echo $this->form()->openTag($this->form); ?>
+	<h1>Confirm Deletion</h1>
+	<div class="form-group">
+		<img class="img-thumbnail img-responsive center-block" src="<?php echo $this->basePath($image->thumbLocation); ?>" alt="<?php echo $image->title; ?>">
+
+		<span class="help-block">
+			Are you sure that you want to delete "<?php echo $this->image->title; ?>".
+		</span>
+
+		<div class="col-sm-offset-2 col-sm-4">
+			<?php echo $this->formSubmit($this->form->get('accept')); ?>
+		</div>
+		<div class="col-sm-4">
+			<?php echo $this->formSubmit($this->form->get('decline')); ?>
+		</div>
+	</div>
+<?php echo $this->form()->closeTag(); ?>

@@ -1,0 +1,44 @@
+<?php
+	// Add the head title
+	$this->headTitle('Photo Gallery');
+
+	// Add the page css
+	$this->headLink()->prependStylesheet($this->basePath('css/gallery.css'));
+?>
+
+<h1><?php echo $this->image->title; ?></h1>
+
+<img class="img-thumbnail img-responsive center-block" src="<?php echo $this->basePath($image->imageLocation); ?>" alt="<?php echo $image->title; ?>">
+
+<?php if ($this->image->description): ?>
+	<div class="image-description">
+		<?php echo $this->image->description; ?>
+	</div>
+<?php endif; ?>
+
+<div class="byline">
+	Posted by <span class="author"><?php echo $this->image->username; ?></span>
+	on <span class="date"><?php echo $this->dateFormat(
+		$image->date, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
+	); ?></span>
+</div>
+
+<?php if (isset($this->image->editDate)): ?>
+	<div class="editline">
+		Last edited by <span class="author"><?php echo $this->image->editUsername; ?></span>
+		on <span class="date"><?php echo $this->dateFormat(
+			$this->image->editDate, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
+		); ?></span>
+	</div>
+<?php endif; ?>
+
+<?php if (true || $this->hasPermission('gallery', 'edit') || $this->hasPermission('gallery', 'delete')): ?> <!-- @todo Make the permission helper and fix this! -->
+	<ul class="options">
+		<?php if (true || $this->hasPermission('gallery', 'edit')): ?> <!-- @todo Make the permission helper and fix this! -->
+			<li><a href="<?php echo $this->url('gallery/edit', $image->getCleanArrayCopy()); ?>">Edit image</a></li>
+		<?php endif; ?>
+		<?php if (true || $this->hasPermission('gallery', 'delete')): ?> <!-- @todo Make the permission helper and fix this! -->
+			<li><a href="<?php echo $this->url('gallery/delete', $image->getCleanArrayCopy()); ?>">Delete image</a></li>
+		<?php endif; ?>
+	</ul>
+<?php endif; ?>

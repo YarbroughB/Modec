@@ -6,22 +6,22 @@ use Zend\Db\TableGateway\TableGateway;
 
 use Core\Db\AbstractTableFactory;
 
-use Gallery\Model\Gallery;
+use Gallery\Model\GalleryImage;
 
-class GalleryTableFactory extends AbstractTableFactory
+class GalleryImagesTableFactory extends AbstractTableFactory
 {
 	protected function getTable()
 	{
-		return GalleryTable::getTable();
+		return GalleryImagesTable::getTable();
 	}
 
 	protected function getModel()
 	{
-		return new Gallery();
+		return new GalleryImage();
 	}
 	
 	protected function createTable(TableGateway $tableGateway)
 	{
-		return new GalleryTable($tableGateway);
+		return new GalleryImagesTable($tableGateway);
 	}
 }

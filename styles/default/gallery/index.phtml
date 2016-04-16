@@ -1,34 +1,25 @@
 <?php
- //Gallery: index page
- $title = 'My Gallery';
- $this->headTitle($title);
- ?>
- <h1><?php echo $this->escapeHtml($title); ?></h1>
- <p>
-     <a href="<?php echo $this->url('gallery', array('action'=>'add'));?>">Add new photo</a>
- </p>
+	// Add the head title
+	$this->headTitle('Photo Gallery');
 
- <table class="table">
- <tr>
-     <th>userid</th>
-     <th>timestamp</th>
-     <th>description</th>
-		 <th>location</th>
-		 <th>photoId</th>
- </tr>
- <?php foreach ($gallerys as $gallery) : ?>
- <tr>
-     <td><?php echo $this->escapeHtml($gallery->userid);?></td>
-     <td><?php echo $this->escapeHtml($gallery->timestamp);?></td>
-		 <td><?php echo $this->escapeHtml($gallery->description);?></td>
-		 <td><?php echo $this->escapeHtml($gallery->location);?></td>
-		 <td><?php echo $this->escapeHtml($gallery->photoId);?></td>
-     <td>
-         <a href="<?php echo $this->url('gallery',
-             array('action'=>'edit', 'id' => $gallery->photoId));?>">Edit</a>
-         <a href="<?php echo $this->url('gallery',
-             array('action'=>'delete', 'id' => $gallery->photoId));?>">Delete</a>
-     </td>
- </tr>
- <?php endforeach; ?>
- </table>
+	// Add the page css
+	$this->headLink()->prependStylesheet($this->basePath('css/gallery.css'));
+?>
+
+<h1>Photo Gallery</h1>
+
+<?php if (true || $this->hasPermission('gallery', 'add')): ?> <!-- @todo Make the permission helper and fix this! -->
+	<a href="<?php echo $this->url('gallery/add'); ?>">Add New Image</a>
+<?php endif; ?>
+
+<!-- @todo Handle when there are no images to display! -->
+
+<div class="row">
+	<?php foreach ($this->images as $image): ?>
+		<div id="gallery-image-<?php echo $image->id; ?>" class="col-lg-3 col-md-4 col-xs-6">
+			<a href="<?php echo $this->url('gallery/view', $image->getCleanArrayCopy()); ?>">
+				<img class="img-thumbnail img-responsive" src="<?php echo $this->basePath($image->thumbLocation); ?>" alt="<?php echo $image->title; ?>">
+			</a>
+		</div>
+	<?php endforeach ?>
+</div>
