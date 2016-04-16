@@ -73,12 +73,12 @@
                     <?php 
 						echo $this->navigation('primary')
 							->menu()
-							->setPartial('partial/navigation.phtml')
+							->setPartial('global/navigation.phtml')
 							->setUlClass('nav navbar-nav');
 
 						echo $this->navigation('secondary')
 							->menu()
-							->setPartial('partial/navigation.phtml')
+							->setPartial('global/navigation.phtml')
 							->setUlClass('nav navbar-nav navbar-right');
 					?>
 				</div>
@@ -91,21 +91,12 @@
 				</div>
 			</noscript>
 			<?php
-				$flashMessenger = $this->flashMessenger();
-				$flashMessenger->setMessageOpenFormat('<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>')
-					->setMessageSeparatorString('</div><div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>')
-					->setMessageCloseString('</div>');
-				
-				echo $flashMessenger->render('error',   array('alert', 'alert-dismissible', 'alert-danger'));
-				echo $flashMessenger->render('success', array('alert', 'alert-dismissible', 'alert-success'));
-				echo $flashMessenger->render('warning', array('alert', 'alert-dismissible', 'alert-warning'));
-				echo $flashMessenger->render('info',    array('alert', 'alert-dismissible', 'alert-info'));
-				echo $flashMessenger->render('default', array('alert', 'alert-dismissible', 'alert-info'));
+				echo $this->partial('global/flashMessenger');
 
 				echo $this->navigation('primary')
 					->breadcrumbs()
 					->setMinDepth(1)
-					->setPartial('partial/breadcrumb.phtml');
+					->setPartial('global/breadcrumb.phtml');
  
 				echo $this->content;
 			?>
