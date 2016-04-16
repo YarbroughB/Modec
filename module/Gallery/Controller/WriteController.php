@@ -175,10 +175,11 @@ class WriteController extends AbstractActionController
 
 		// Display the form
 		$view = new ViewModel(array(
+			'image' => $image,
 			'form' => $form
 		));
 		
-		$view->setTemplate('gallery/add');
+		$view->setTemplate('gallery/edit');
 
 		return $view;
 	}

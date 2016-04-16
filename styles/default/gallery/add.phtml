@@ -1,12 +1,71 @@
 <?php
- //Gallery: add photo page
- $title = 'Add new photo';
- $this->headTitle($title);
- ?>
- <h1><?php echo $this->escapeHtml($title); ?></h1>
- <?php
- $form->prepare();
+	// Add the head title
+	$this->headTitle('Photo Gallery');
 
- echo $this->form()->render($form);
+	// Add the page css
+	$this->headLink()->prependStylesheet($this->basePath('css/gallery.css'));
 
- 
+	// Customize the form
+	$this->form->setAttribute('class', 'form-horizontal');
+
+	$this->formElementErrors()->setMessageOpenFormat('<span class="help-block">');
+	$this->formElementErrors()->setMessageSeparatorString('</span><span class="help-block">');
+	$this->formElementErrors()->setMessageCloseString('</span>');
+
+	$this->form->get('image')->setAttribute('class', 'form-control');
+	$this->form->get('image')->setLabelAttributes(array(
+		'class' => 'col-sm-2 control-label'
+	));
+
+	$this->form->get('title')->setAttribute('class', 'form-control');
+    $this->form->get('title')->setLabelAttributes(array(
+		'class' => 'col-sm-2 control-label'
+	));
+
+	$this->form->get('description')->setAttribute('class', 'form-control');
+    $this->form->get('description')->setLabelAttributes(array(
+		'class' => 'col-sm-2 control-label'
+	));
+
+	$this->form->get('submit')->setAttribute('class', 'btn btn-primary btn-block');
+?>
+
+<?php echo $this->form()->openTag($this->form); ?>
+	<h1>Add New Photo</h1>
+
+	<div class="form-group <?php echo ($this->formHasErrors($this->form->get('image')) ? 'has-error' : ''); ?>">
+		<?php echo $this->formLabel($this->form->get('image')); ?>
+		<div class="col-sm-10">
+			<div class="btn btn-default btn-file">
+				<?php echo $this->formElement($this->form->get('image')); ?>
+			</div>
+			<span class="form-control" data-file-label="image">No file selected.</span>
+			<?php echo $this->formElementErrors($this->form->get('image')); ?>
+		</div>
+		<div class="col-sm-offset-2 col-sm-10">
+			<img class="img-thumbnail img-responsive" data-file-preview="image" />
+		</div>
+	</div>
+
+	<div class="form-group <?php echo ($this->formHasErrors($this->form->get('title')) ? 'has-error' : ''); ?>">
+		<?php echo $this->formLabel($this->form->get('title')); ?>
+		<div class="col-sm-10">
+			<?php echo $this->formElement($this->form->get('title')); ?>
+			<?php echo $this->formElementErrors($this->form->get('title')); ?>
+		</div>
+	</div>
+
+	<div class="form-group <?php echo ($this->formHasErrors($this->form->get('description')) ? 'has-error' : ''); ?>">
+		<?php echo $this->formLabel($this->form->get('description')); ?>
+		<div class="col-sm-10">
+			<?php echo $this->formElement($this->form->get('description')); ?>
+			<?php echo $this->formElementErrors($this->form->get('description')); ?>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-6">
+			<?php echo $this->formSubmit($this->form->get('submit')); ?>
+		</div>
+	</div>
+<?php echo $this->form()->closeTag(); ?>
