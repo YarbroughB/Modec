@@ -18,9 +18,13 @@
 	<article id="blog-post-<?php echo $post->id; ?>" class="blog-post">
 		<h2><?php echo $post->title; ?></h2>
 		<div class="post-text">
-			<?php echo substr($post->text,0,500); ?>
+			<?php echo $post->briefText; ?>
 			<a href="<?php echo $this->url('blog/view', $post->getCleanArrayCopy()); ?>">
-				Read More
+				<?php if ($post->textExceedsBrief()): ?>
+					Read More
+				<?php else: ?>
+					View Post
+				<?php endif; ?>
 			</a>
 		</div> <br/>
 		<div class="byline">

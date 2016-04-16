@@ -16,6 +16,26 @@ class BlogPost extends AbstractModel
 	protected $editUserid;
 	protected $editUsername;
 	
+	public function maxBriefLength()
+	{
+		//! @todo This value should come from a setting!
+		return 500;
+	}
+	
+	public function textExceedsBrief()
+	{
+		return (strlen($this->text) > $this->maxBriefLength());
+	}
+
+	public function getBriefText()
+	{
+		if (strlen($this->text) < $this->maxBriefLength()) {
+			return $this->text;
+		}
+		
+		return substr($this->text, 0, $this->maxBriefLength() - 3) . '...';
+	}
+	
 	protected function getCleanTitle()
 	{
 		return $this->cleanString($this->title);

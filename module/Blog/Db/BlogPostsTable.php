@@ -15,7 +15,7 @@ class BlogPostsTable extends AbstractTable
 	static protected $prefix  = 'blog_post';
 	static protected $table   = 'blog_posts';
 	static protected $columns = array(
-		'id', 'userid', 'title', 'text', 'date', 'editDate', 'editUser'
+		'id', 'userid', 'title', 'text', 'date', 'editDate', 'editUserid'
 	);
 
 	protected function select($where = null)
@@ -85,5 +85,5 @@ class BlogPostsTable extends AbstractTable
 		return $this->delete(array(
 			'id' => (int) $id
 		));
-	}	
+	}
 }
