@@ -21,7 +21,7 @@ class BlogPostFilter extends InputFilter
 					'name'    => 'StringLength',
 					'options' => array(
 						'encoding' => 'UTF-8',
-						'max'	   => 6,  //! @todo This should probably come from a setting!
+						'min'	   => 6,  //! @todo This should probably come from a setting!
 						'max'	   => 100,
 					),
 				),
@@ -41,7 +41,7 @@ class BlogPostFilter extends InputFilter
 					'name'    => 'StringLength',
 					'options' => array(
 						'encoding' => 'UTF-8',
-						'max'	   => 15,  //! @todo This should probably come from a setting!
+						'min'	   => 15,  //! @todo This should probably come from a setting!
 						'max'	   => 65535,
 					),
 				),
