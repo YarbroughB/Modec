@@ -129,10 +129,12 @@ footer .container {
 	position: relative;
 }
 
-.h1 .btn, h1 .btn {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+@media (min-width: 768px) {
+	.h1 .btn, h1 .btn {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
 }
 
 /**
