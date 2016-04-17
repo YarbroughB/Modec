@@ -123,6 +123,19 @@ footer .container {
 }
 
 /**
+ * Headers
+ */
+.h1, h1 {
+	position: relative;
+}
+
+.h1 .btn, h1 .btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+/**
  * Forms
  */
 .form-horizontal .help-block {

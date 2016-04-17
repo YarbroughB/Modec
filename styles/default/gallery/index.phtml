@@ -6,20 +6,34 @@
 	$this->headLink()->prependStylesheet($this->basePath('css/gallery.css'));
 ?>
 
-<h1>Photo Gallery</h1>
+<?php if (empty($this->images)): ?>
+	<div class="jumbotron">
+		<h1>Photo Gallery</h1>
+		<?php if ($this->hasPermission('gallery', 'add')): ?>
+			<p>It appears that no one has uploaded any photos yet, would you like to be the first?</p>
+			<div class="col-sm-offset-2 col-sm-8">
+				<a class="btn btn-primary btn-lg btn-block" href="<?php echo $this->url('gallery/add'); ?>">Add New Image</a>
+			</div>
+		<?php else: ?>
+			<p>It appears that no one has uploaded any photos yet!</p>
+		<?php endif; ?>
+	</div>
+<?php else: ?>
+	<h1>
+		Photo Gallery
 
-<?php if ($this->hasPermission('gallery', 'add')): ?>
-	<a href="<?php echo $this->url('gallery/add'); ?>">Add New Image</a>
+		<?php if ($this->hasPermission('gallery', 'add')): ?>
+			<a class="btn btn-primary" href="<?php echo $this->url('gallery/add'); ?>">Add New Image</a>
+		<?php endif; ?>
+	</h1>
+	
+	<div class="img-grid">
+		<?php foreach ($this->images as $image): ?>
+			<div id="gallery-image-<?php echo $image->id; ?>" class="img-box">
+				<a href="<?php echo $this->url('gallery/view', $image->getCleanArrayCopy()); ?>">
+					<img class="img-thumbnail img-responsive center-block" src="<?php echo $this->basePath($image->thumbLocation); ?>" alt="<?php echo $image->title; ?>">
+				</a>
+			</div>
+		<?php endforeach ?>
+	</div>
 <?php endif; ?>
-
-<!-- @todo Handle when there are no images to display! -->
-
-<div class="row">
-	<?php foreach ($this->images as $image): ?>
-		<div id="gallery-image-<?php echo $image->id; ?>" class="col-lg-3 col-md-4 col-xs-6">
-			<a href="<?php echo $this->url('gallery/view', $image->getCleanArrayCopy()); ?>">
-				<img class="img-thumbnail img-responsive" src="<?php echo $this->basePath($image->thumbLocation); ?>" alt="<?php echo $image->title; ?>">
-			</a>
-		</div>
-	<?php endforeach ?>
-</div>

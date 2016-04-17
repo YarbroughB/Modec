@@ -1,1 +1,34 @@
+.img-grid {
+	font-size: 0px;
+}
 
+.img-grid .img-box {
+	display: inline-block;
+	width: 100%;
+	padding: 0 10px 15px;
+	vertical-align: middle;
+	font-size: 14px;
+	font-size: 1rem;
+}
+
+.img-grid .img-box .img-responsive {
+	max-height: 300px;
+}
+
+@media (min-width: 768px) {
+	.img-grid .img-box {
+		width: 50%;
+	}
+}
+
+@media (min-width: 992px) {
+	.img-grid .img-box {
+		width: 33.33333333%;
+	}
+}
+
+@media (min-width: 1200px) {
+	.img-grid .img-box {
+		width: 25%;
+	}
+}

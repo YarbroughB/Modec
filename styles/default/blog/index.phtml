@@ -6,33 +6,48 @@
 	$this->headLink()->prependStylesheet($this->basePath('css/blog.css'));
 ?>
 
-<h1>Blog</h1>
+<?php if (empty($this->posts)): ?>
+	<div class="jumbotron">
+		<h1>Blog</h1>
+		<?php if ($this->hasPermission('blog', 'add')): ?>
+			<p>It appears that no one has posted anything yet, would you like to be the first?</p>
+			<div class="col-sm-offset-2 col-sm-8">
+				<a class="btn btn-primary btn-lg btn-block" href="<?php echo $this->url('blog/add'); ?>">Add New Post</a>
+			</div>
+		<?php else: ?>
+			<p>It appears that no one has posted anything yet!</p>
+		<?php endif; ?>
+	</div>
+<?php else: ?>
+	<h1>
+		Blog
 
-<!-- @todo Handle when there are no posts to display! -->
+		<?php if ($this->hasPermission('blog', 'add')): ?>
+			<a class="btn btn-primary" href="<?php echo $this->url('blog/add'); ?>">Add New Post</a>
+		<?php endif; ?>
+	</h1>
 
-<?php if ($this->hasPermission('blog', 'add')): ?>
-	<a href="<?php echo $this->url('blog/add'); ?>">Add New Post</a>
+	<div class="blog-post-list">
+		<?php foreach ($this->posts as $post): ?>
+			<article id="blog-post-<?php echo $post->id; ?>" class="blog-post">
+				<h2><?php echo $post->title; ?></h2>
+				<div class="post-text">
+					<?php echo $post->briefText; ?>
+					<a href="<?php echo $this->url('blog/view', $post->getCleanArrayCopy()); ?>">
+						<?php if ($post->textExceedsBrief()): ?>
+							Read More
+						<?php else: ?>
+							View Post
+						<?php endif; ?>
+					</a>
+				</div>
+				<div class="byline">
+					Posted by <span class="author"><?php echo $post->username; ?></span>
+					on <span class="date"><?php echo $this->dateFormat(
+						$post->date, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
+					); ?></span>
+				</div>
+			</article>
+		<?php endforeach ?>
+	</div>
 <?php endif; ?>
-
-<?php foreach ($this->posts as $post): ?>
-	<article id="blog-post-<?php echo $post->id; ?>" class="blog-post">
-		<h2><?php echo $post->title; ?></h2>
-		<div class="post-text">
-			<?php echo $post->briefText; ?>
-			<a href="<?php echo $this->url('blog/view', $post->getCleanArrayCopy()); ?>">
-				<?php if ($post->textExceedsBrief()): ?>
-					Read More
-				<?php else: ?>
-					View Post
-				<?php endif; ?>
-			</a>
-		</div> <br/>
-		<div class="byline">
-			Posted by <span class="author"><?php echo $post->username; ?></span>
-			on <span class="date"><?php echo $this->dateFormat(
-				$post->date, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
-			); ?></span>
-		</div>
-	</article>
-	<hr /> <!-- @todo This HR should be done as a bottom border on all but the last child elements of the article itself. -->
-<?php endforeach ?>
