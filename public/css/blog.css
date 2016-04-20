@@ -14,7 +14,19 @@
 
 .blog-post-list .blog-post .byline {
 	text-align: right;
-	font-style: italic;
 	font-size: 0.9em;
+}
+
+.blog-post .byline, .blog-post .editline{
+	font-style: italic;
 	color: #555555;
+}
+
+.blog-post .post-text {
+	padding-bottom:.5em;
+}
+
+.blog-post .options {
+	list-style: none;
+	padding-left: 1.5em;
 }
