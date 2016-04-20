@@ -53,4 +53,4 @@ highlight a random gallery).
 	* [x] Stupidly Simple Version
 	* [ ] Advanced Version
  * [x] Blog
- * [ ] Photo Gallery
+ * [x] Photo Gallery
