@@ -21,18 +21,41 @@
 <?php else: ?>
 	<h1>
 		Photo Gallery
-
 		<?php if ($this->hasPermission('gallery', 'add')): ?>
 			<a class="btn btn-primary" href="<?php echo $this->url('gallery/add'); ?>">Add New Image</a>
 		<?php endif; ?>
 	</h1>
-	
-	<div class="img-grid">
+	<div class="gallery-buttons">
+		<button data-target="gallery-main" data-add-class="img-grid" data-remove-class="img-list" class="btn glyphicon glyphicon-th" type="button" ></button>
+		<button data-target="gallery-main" data-add-class="img-list" data-remove-class="img-grid" class="btn glyphicon glyphicon-th-list" type="button" ></button>
+		<script type="text/javascript">
+			$('[data-add-class]').each(function(index, element){
+				$(element).click(function(event){
+					var target = "#" + event.currentTarget.dataset["target"];
+					$(target).addClass(event.currentTarget.dataset["addClass"]);
+					$(target).removeClass(event.currentTarget.dataset["removeClass"]);
+				});
+			});
+		</script>
+	</div>
+	<div id="gallery-main" class="img-grid">
 		<?php foreach ($this->images as $image): ?>
 			<div id="gallery-image-<?php echo $image->id; ?>" class="img-box">
-				<a href="<?php echo $this->url('gallery/view', $image->getCleanArrayCopy()); ?>">
-					<img class="img-thumbnail img-responsive center-block" src="<?php echo $this->basePath($image->thumbLocation); ?>" alt="<?php echo $image->title; ?>">
+				<a class="img-thumbnail" href="<?php echo $this->url('gallery/view', $image->getCleanArrayCopy()); ?>">
+					<img class="img-responsive center-block" src="<?php echo $this->basePath($image->thumbLocation); ?>" alt="<?php echo $image->title; ?>">
 				</a>
+				<div class="img-info">
+					<span class="img-title"><?php echo $image->title; ?> </span>
+					<span class="img-description"><?php echo $image->description; ?> </span>
+					<div class="byline">
+						Posted by <span class="author"><?php echo $image->username; ?></span>
+						on <span class="date"><?php echo $this->dateFormat(
+							$image->date, IntlDateFormatter::LONG, IntlDateFormatter::SHORT, "en_US"
+						); ?></span>
+					</div>
+				</div>
+				<div class="clearfix">
+				</div>
 			</div>
 		<?php endforeach ?>
 	</div>

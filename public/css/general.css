@@ -178,3 +178,10 @@ form img[data-file-preview] {
 .alert {
 	border-width: 2px 2px 2px 10px;
 }
+
+/**
+ * Other
+ */
+.clearfix {
+	clear: both;
+}

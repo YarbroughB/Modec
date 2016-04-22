@@ -9,10 +9,15 @@
 	vertical-align: middle;
 	font-size: 14px;
 	font-size: 1rem;
+	text-align: center;
 }
 
 .img-grid .img-box .img-responsive {
 	max-height: 300px;
+}
+
+.img-grid .img-info {
+	display: none;
 }
 
 @media (min-width: 768px) {
@@ -50,4 +55,44 @@
 	padding-top:.25em;
 	text-align: center;
 	list-style: none;
+}
+
+.img-list .img-box {
+	padding: 10px 10px 15px;
+	clear:both;
+	position: relative;
+}
+
+.img-list .img-box .img-responsive {
+	max-height: 300px;
+}
+
+.img-list .img-thumbnail {
+	float: left;
+	width: 25%;
+}
+
+.img-list .img-info {
+	margin-left: 25%;
+	padding-left: 15px;
+	text-align: left;
+	height: 100%;
+}
+
+.img-list .img-description {
+	display: block;
+}
+
+.img-list .img-title {
+	padding-top: 15px;
+	padding-bottom: 10px;
+	display: block;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.img-list .byline {
+	position: absolute;
+	bottom: 25px;
+	right: 0;
 }
