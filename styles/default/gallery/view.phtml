@@ -54,3 +54,10 @@
 		</ul>
 	<?php endif; ?>
 <?php endif; ?>
+
+<?php while($comment = $this->comments->current()): ?>
+	<?php echo $comment->content ?>
+	<?php echo $comment->userid ?>
+	<?php echo $comment->date ?>
+	<?php $this->comments->next(); ?>
+<?php endwhile; ?>

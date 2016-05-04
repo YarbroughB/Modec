@@ -7,8 +7,11 @@ use Zend\View\Model\ViewModel;
 use Core\Controller\AbstractActionController;
 
 use Gallery\Form\GalleryImageForm;
+use Gallery\Form\GalleryImageCommentForm;
 use Gallery\Form\GalleryImageFilter;
+use Gallery\Form\GalleryImageCommentFilter;
 use Gallery\Model\GalleryImage;
+use Gallery\Model\GalleryImageComment;
 
 class WriteController extends AbstractActionController
 {
@@ -181,5 +184,77 @@ class WriteController extends AbstractActionController
 		$view->setTemplate('gallery/edit');
 
 		return $view;
+	}
+	
+	public function addCommentAction()
+	{
+		// Check if the user has permission to this action
+		$user = $this->identity();
+
+		/*if (!$user || !$this->hasPermission('gallery', 'add_comment')) {
+			return $this->permissionDenied();
+		}*/
+		
+    // Get the image id from the request
+		$imageid = $this->params('imageid');
+		
+		// Get the image from the database
+		$imagesTable = $this->getServiceLocator()->get('GalleryImagesTable');
+		$image = $imagesTable->getImage($imageid);
+		// Check that an image was found
+		if (!$image) {
+			return $this->pageNotFound();
+		}
+		
+		// Create the form		
+		$form = new GalleryImageCommentForm();
+		$form->setAttribute('action', $this->url()->fromRoute('gallery/add_comment', array('imageid' => $imageid)));
+		
+		// Process POST requests
+		$request = $this->getRequest();
+
+    if ($request->isPost()) {
+					
+			// Setup the form data and input filter
+			$form->setData($request->getPost()->toArray());
+			$form->setInputFilter(
+				new GalleryImageCommentFilter($this->getServiceLocator())
+			);
+			// Check if the form is valid
+			if ($form->isValid()) {
+				// Collect the image data
+				$data = new GalleryImageComment($form->getData());
+        if($data->imageid != $imageid)
+				{
+					$this->flashMessenger()->addErrorMessage("Image Id mismatch");
+					return $this->redirect()->toRoute('gallery');
+				}
+				$data->id     = null;
+				$data->userid = $user->userid;
+				$data->date   = time();
+				
+				// Add the image to the database
+				$commentsTable = $this->getServiceLocator()->get('GalleryImageCommentsTable');
+				$data->id = $commentsTable->addComment($data);
+
+					// Redirect the user to their newly made image
+				return $this->redirect()->toRoute('gallery/view', $image->getCleanArrayCopy());
+			}
+		}
+		else
+		{
+			// Setup the form data and input filter
+			$form->setData(array('imageid' => $imageid));
+		}
+
+		// Display the form
+		$view = new ViewModel(array(
+			'form' => $form
+		));
+		
+		$view->setTemplate('gallery/add_comment');
+
+		return $view;
+		
 	}
 }

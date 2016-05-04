@@ -54,10 +54,14 @@ class ViewController extends AbstractActionController
 		if (!$image) {
 			return $this->pageNotFound();
 		}
-
+    
+		$commentTable = $this->getServiceLocator()->get('GalleryImageCommentsTable');
+		$comments = $commentTable->getImageComments($image->id);
+		
 		// Display the view
 		$view = new ViewModel(array(
-			'image' => $image
+			'image' => $image,
+			'comments' => $comments
 		));
 
 		$view->setTemplate('gallery/view');

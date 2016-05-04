@@ -72,6 +72,19 @@ return array(
 							),
 						),
 					),
+					'add_comment' => array(
+						'type' => 'segment',
+						'options' => array(
+							'route'    => '/add_comment/:imageid',
+							'defaults' => array(
+							  'controller' => 'Gallery\Write',
+								'action' => 'addComment',
+							),
+							'constraints' => array(
+								'imageid'    => '[1-9]\d*',
+							),
+						),
+					),
 				),
 			),
 		),

@@ -25,6 +25,7 @@ class Module
 		return array(
 			'factories' => array(
 				'GalleryImagesTable' => 'Gallery\Db\GalleryImagesTableFactory',
+				'GalleryImageCommentsTable' => 'Gallery\Db\GalleryImageCommentsTableFactory',
 			),
 		);
 	}
